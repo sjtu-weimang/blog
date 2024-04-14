@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content=". CSS中可继承与不可继承属性有哪些一、无继承性的属性 display：规定元素应该生成的框的类型文本属性： vertical-align：垂直文本对齐text-decoration：规定添加到文本的装饰text-shadow：文本阴影效果white-space：空白符的处理unicode-bidi：设置文本的方向 盒子模型的属性：width、height、margin、border、paddi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS相关记录">
+<meta property="og:url" content="https://sjtu-weimang.github.io/blog/2023/11/28/css%E7%9B%B8%E5%85%B3/index.html">
+<meta property="og:site_name" content="weimang&#39;s blog">
+<meta property="og:description" content=". CSS中可继承与不可继承属性有哪些一、无继承性的属性 display：规定元素应该生成的框的类型文本属性： vertical-align：垂直文本对齐text-decoration：规定添加到文本的装饰text-shadow：文本阴影效果white-space：空白符的处理unicode-bidi：设置文本的方向 盒子模型的属性：width、height、margin、border、paddi">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-11-28T06:52:00.000Z">
+<meta property="article:modified_time" content="2024-04-12T13:37:22.373Z">
+<meta property="article:author" content="weimang">
+<meta property="article:tag" content="css">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/blog/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/blog/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>CSS相关记录</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/blog/">首页</a></li><!--
+     --><!--
+       --><li><a href="/blog/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/sjtu-weimang?tab=repositories">项目</a></li><!--
+     --><!--
+       --><li><a href="/blog/search/">搜索</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/blog/2023/12/12/%E4%B8%8D%E5%90%8C%E7%9A%84%E8%AF%B7%E6%B1%82%E6%96%B9%E5%BC%8F/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/blog/2023/11/27/html%E7%9B%B8%E5%85%B3/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://sjtu-weimang.github.io/blog/2023/11/28/css%E7%9B%B8%E5%85%B3/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://sjtu-weimang.github.io/blog/2023/11/28/css%E7%9B%B8%E5%85%B3/&text=CSS相关记录"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://sjtu-weimang.github.io/blog/2023/11/28/css%E7%9B%B8%E5%85%B3/&title=CSS相关记录"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://sjtu-weimang.github.io/blog/2023/11/28/css%E7%9B%B8%E5%85%B3/&is_video=false&description=CSS相关记录"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=CSS相关记录&body=Check out this article: https://sjtu-weimang.github.io/blog/2023/11/28/css%E7%9B%B8%E5%85%B3/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://sjtu-weimang.github.io/blog/2023/11/28/css%E7%9B%B8%E5%85%B3/&title=CSS相关记录"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://sjtu-weimang.github.io/blog/2023/11/28/css%E7%9B%B8%E5%85%B3/&title=CSS相关记录"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://sjtu-weimang.github.io/blog/2023/11/28/css%E7%9B%B8%E5%85%B3/&title=CSS相关记录"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://sjtu-weimang.github.io/blog/2023/11/28/css%E7%9B%B8%E5%85%B3/&title=CSS相关记录"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://sjtu-weimang.github.io/blog/2023/11/28/css%E7%9B%B8%E5%85%B3/&name=CSS相关记录&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://sjtu-weimang.github.io/blog/2023/11/28/css%E7%9B%B8%E5%85%B3/&t=CSS相关记录"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        CSS相关记录
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">weimang</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2023-11-28T06:52:00.000Z" class="dt-published" itemprop="datePublished">2023-11-28</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/blog/categories/css/">css</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/blog/tags/css/" rel="tag">css</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <p>. CSS中可继承与不可继承属性有哪些<br>一、无继承性的属性</p>
+<p>display：规定元素应该生成的框的类型<br>文本属性：</p>
+<p>vertical-align：垂直文本对齐<br>text-decoration：规定添加到文本的装饰<br>text-shadow：文本阴影效果<br>white-space：空白符的处理<br>unicode-bidi：设置文本的方向</p>
+<p>盒子模型的属性：width、height、margin、border、padding<br>背景属性：background、background-color、background-image、background-repeat、background-position、background-attachment<br>定位属性：float、clear、position、top、right、bottom、left、min-width、min-height、max-width、max-height、overflow、clip、z-index<br>生成内容属性：content、counter-reset、counter-increment<br>轮廓样式属性：outline-style、outline-width、outline-color、outline<br>页面样式属性：size、page-break-before、page-break-after<br>声音样式属性：pause-before、pause-after、pause、cue-before、cue-after、cue、play-during</p>
+<p>二、有继承性的属性</p>
+<p>字体系列属性</p>
+<p>font-family：字体系列<br>font-weight：字体的粗细<br>font-size：字体的大小<br>font-style：字体的风格</p>
+<p>文本系列属性</p>
+<p>text-indent：文本缩进<br>text-align：文本水平对齐<br>line-height：行高<br>word-spacing：单词之间的间距<br>letter-spacing：中文或者字母之间的间距<br>text-transform：控制文本大小写（就是uppercase、lowercase、capitalize这三个）<br>color：文本颜色</p>
+<p>元素可见性</p>
+<p>visibility：控制元素显示隐藏</p>
+<p>列表布局属性</p>
+<p>list-style：列表风格，包括list-style-type、list-style-image等</p>
+<p>光标属性</p>
+<p>cursor：光标显示为何种形态</p>
+<ol start="22">
+<li>CSS预处理器&#x2F;后处理器是什么？为什么要使用它们？<br>预处理器， 如：less，sass，stylus，用来预编译sass或者less，增加了css代码的复用性。层级，mixin， 变量，循环， 函数等对编写以及开发UI组件都极为方便。<br>后处理器， 如： postCss，通常是在完成的样式表中根据css规范处理css，让其更加有效。目前最常做的是给css属性添加浏览器私有前缀，实现跨浏览器兼容性的问题。<br>css预处理器为css增加一些编程特性，无需考虑浏览器的兼容问题，可以在CSS中使用变量，简单的逻辑程序，函数等在编程语言中的一些基本的性能，可以让css更加的简洁，增加适应性以及可读性，可维护性等。<br>其它css预处理器语言：Sass（Scss）, Less, Stylus, Turbine, Swithch css, CSS Cacheer, DT Css。<br>使用原因：</li>
+</ol>
+<p>结构清晰， 便于扩展<br>可以很方便的屏蔽浏览器私有语法的差异<br>可以轻松实现多重继承<br>完美的兼容了CSS代码，可以应用到老项目中。</p>
+<p>（3）Webpack 能处理 CSS 吗？如何实现？<br>Webpack 能处理 CSS 吗：</p>
+<p>Webpack 在裸奔的状态下，是不能处理 CSS 的，Webpack 本身是一个面向 JavaScript 且只能处理 JavaScript 代码的模块化打包工具；<br>Webpack 在 loader 的辅助下，是可以处理 CSS 的。</p>
+<p>如何用 Webpack 实现对 CSS 的处理：</p>
+<p>Webpack 中操作 CSS 需要使用的两个关键的 loader：css-loader 和 style-loader<br>注意，答出“用什么”有时候可能还不够，面试官会怀疑你是不是在背答案，所以你还需要了解每个 loader 都做了什么事情：</p>
+<p>css-loader：导入 CSS 模块，对 CSS 代码进行编译处理；<br>style-loader：创建style标签，把 CSS 内容写入标签。</p>
+<p>在实际使用中，css-loader 的执行顺序一定要安排在 style-loader 的前面。因为只有完成了编译过程，才可以对 css 代码进行插入；若提前插入了未编译的代码，那么 webpack 是无法理解这坨东西的，它会无情报错。</p>
+<ol start="29">
+<li>如何判断元素是否到达可视区域<br>以图片显示为例：</li>
+</ol>
+<p>window.innerHeight 是浏览器可视区的高度；<br>document.body.scrollTop || document.documentElement.scrollTop 是浏览器滚动的过的距离；<br>imgs.offsetTop 是元素顶部距离文档顶部的高度（包括滚动条的距离）；<br>内容达到显示区域的：img.offsetTop &lt; window.innerHeight + document.body.scrollTop;</p>
+<ol start="30">
+<li>z-index属性在什么情况下会失效<br>通常 z-index 的使用是在有两个重叠的标签，在一定的情况下控制其中一个在另一个的上方或者下方出现。z-index值越大就越是在上层。z-index元素的position属性需要是relative，absolute或是fixed。<br>z-index属性在下列情况下会失效：</li>
+</ol>
+<p>父元素position为relative时，子元素的z-index失效。解决：父元素position改为absolute或static；<br>元素没有设置position属性为非static属性。解决：设置该元素的position属性为relative，absolute或是fixed中的一种；<br>元素在设置z-index的同时还设置了float浮动。解决：float去除，改为display：inline-block；</p>
+<ol>
+<li>常见的CSS布局单位<br>常用的布局单位包括像素（px），百分比（%），em，rem，vw&#x2F;vh。<br>（1）像素（px）是页面布局的基础，一个像素表示终端（电脑、手机、平板等）屏幕所能显示的最小的区域，像素分为两种类型：CSS像素和物理像素：</li>
+</ol>
+<p>CSS像素：为web开发者提供，在CSS中使用的一个抽象单位；<br>物理像素：只与设备的硬件密度有关，任何设备的物理像素都是固定的。</p>
+<p>（2）百分比（%），当浏览器的宽度或者高度发生变化时，通过百分比单位可以使得浏览器中的组件的宽和高随着浏览器的变化而变化，从而实现响应式的效果。一般认为子元素的百分比相对于直接父元素。<br>（3）em和rem相对于px更具灵活性，它们都是相对长度单位，它们之间的区别：em相对于父元素，rem相对于根元素。</p>
+<p>em： 文本相对长度单位。相对于当前对象内文本的字体尺寸。如果当前行内文本的字体尺寸未被人为设置，则相对于浏览器的默认字体尺寸(默认16px)。(相对父元素的字体大小倍数)。<br>rem： rem是CSS3新增的一个相对单位，相对于根元素（html元素）的font-size的倍数。作用：利用rem可以实现简单的响应式布局，可以利用html元素中字体的大小与屏幕间的比值来设置font-size的值，以此实现当屏幕分辨率变化时让元素也随之变化。</p>
+<p>（4）vw&#x2F;vh是与视图窗口有关的单位，vw表示相对于视图窗口的宽度，vh表示相对于视图窗口高度，除了vw和vh外，还有vmin和vmax两个相关的单位。</p>
+<p>vw：相对于视窗的宽度，视窗宽度是100vw；<br>vh：相对于视窗的高度，视窗高度是100vh；<br>vmin：vw和vh中的较小值；<br>vmax：vw和vh中的较大值；</p>
+<p>vw&#x2F;vh 和百分比很类似，两者的区别：</p>
+<p>百分比（%）：大部分相对于祖先元素，也有相对于自身的情况比如（border-radius、translate等)<br>vw&#x2F;vm：相对于视窗的尺寸</p>
+<ol start="2">
+<li>px、em、rem的区别及使用场景<br>三者的区别：</li>
+</ol>
+<p>px是固定的像素，一旦设置了就无法因为适应页面大小而改变。<br>em和rem相对于px更具有灵活性，他们是相对长度单位，其长度不是固定的，更适用于响应式布局。<br>em是相对于其父元素来设置字体大小，这样就会存在一个问题，进行任何元素设置，都有可能需要知道他父元素的大小。而rem是相对于根元素，这样就意味着，只需要在根元素确定一个参考值。</p>
+<p>使用场景：</p>
+<p>对于只需要适配少部分移动设备，且分辨率对页面影响不大的，使用px即可 。<br>对于需要适配各种移动设备，使用rem，例如需要适配iPhone和iPad等分辨率差别比较挺大的设备。</p>
+<p>为什么需要清除浮动？清除浮动的方式<br>浮动的定义： 非IE浏览器下，容器不设高度且子元素浮动时，容器高度不能被内容撑开。 此时，内容会溢出到容器外面而影响布局。这种现象被称为浮动（溢出）。<br>浮动的工作原理：</p>
+<p>浮动元素脱离文档流，不占据空间（引起“高度塌陷”现象）<br>浮动元素碰到包含它的边框或者其他浮动元素的边框停留</p>
+<p>浮动元素可以左右移动，直到遇到另一个浮动元素或者遇到它外边缘的包含框。浮动框不属于文档流中的普通流，当元素浮动之后，不会影响块级元素的布局，只会影响内联元素布局。此时文档流中的普通流就会表现得该浮动框不存在一样的布局模式。当包含框的高度小于浮动框的时候，此时就会出现“高度塌陷”。<br>浮动元素引起的问题？</p>
+<p>父元素的高度无法被撑开，影响与父元素同级的元素<br>与浮动元素同级的非浮动元素会跟随其后<br>若浮动的元素不是第一个元素，则该元素之前的元素也要浮动，否则会影响页面的显示结构</p>
+<p>清除浮动的方式如下：</p>
+<p>给父级div定义height属性<br>最后一个浮动元素之后添加一个空的div标签，并添加clear:both样式<br>包含浮动元素的父级标签添加overflow:hidden或者overflow:auto<br>使用 :after 伪元素。由于IE6-7不支持 :after，使用 zoom:1 触发 hasLayout**</p>
+
+  </div>
+</article>
+
+
+    <div class="blog-post-comments">
+        <div id="utterances_thread">
+            <noscript>加载评论需要在浏览器启用 JavaScript 脚本支持。</noscript>
+        </div>
+    </div>
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/blog/">首页</a></li>
+        
+          <li><a href="/blog/archives/">归档</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="https://github.com/sjtu-weimang?tab=repositories">项目</a></li>
+        
+          <li><a href="/blog/search/">搜索</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://sjtu-weimang.github.io/blog/2023/11/28/css%E7%9B%B8%E5%85%B3/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://sjtu-weimang.github.io/blog/2023/11/28/css%E7%9B%B8%E5%85%B3/&text=CSS相关记录"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://sjtu-weimang.github.io/blog/2023/11/28/css%E7%9B%B8%E5%85%B3/&title=CSS相关记录"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://sjtu-weimang.github.io/blog/2023/11/28/css%E7%9B%B8%E5%85%B3/&is_video=false&description=CSS相关记录"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=CSS相关记录&body=Check out this article: https://sjtu-weimang.github.io/blog/2023/11/28/css%E7%9B%B8%E5%85%B3/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://sjtu-weimang.github.io/blog/2023/11/28/css%E7%9B%B8%E5%85%B3/&title=CSS相关记录"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://sjtu-weimang.github.io/blog/2023/11/28/css%E7%9B%B8%E5%85%B3/&title=CSS相关记录"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://sjtu-weimang.github.io/blog/2023/11/28/css%E7%9B%B8%E5%85%B3/&title=CSS相关记录"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://sjtu-weimang.github.io/blog/2023/11/28/css%E7%9B%B8%E5%85%B3/&title=CSS相关记录"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://sjtu-weimang.github.io/blog/2023/11/28/css%E7%9B%B8%E5%85%B3/&name=CSS相关记录&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://sjtu-weimang.github.io/blog/2023/11/28/css%E7%9B%B8%E5%85%B3/&t=CSS相关记录"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+      
+        
+          2021-2025
+            weimang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       -->
+          <li><a href="/blog/">
+              首页
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a href="/blog/archives/">
+              归档
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a target="_blank" rel="noopener" href="https://github.com/sjtu-weimang?tab=repositories">
+              项目
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a href="/blog/search/">
+              搜索
+            </a></li><!--
+     -->
+          
+      </ul>
+    </nav>
+  </div>
+</footer>
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/blog/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+    <script type="text/javascript">
+      var utterances_repo = 'owner/githubrepo';
+      var utterances_issue_term = 'pathname';
+      var utterances_label = 'Comment';
+      var utterances_theme = 'github-dark';
+
+      (function(){
+          var script = document.createElement('script');
+
+          script.src = 'https://utteranc.es/client.js';
+          script.setAttribute('repo', utterances_repo);
+          script.setAttribute('issue-term', 'pathname');
+          script.setAttribute('label', utterances_label);
+          script.setAttribute('theme', utterances_theme);
+          script.setAttribute('crossorigin', 'anonymous');
+          script.async = true;
+          (document.getElementById('utterances_thread')).appendChild(script);
+      }());
+  </script>
+
+</body>
+</html>
