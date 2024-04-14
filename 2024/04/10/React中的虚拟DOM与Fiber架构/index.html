@@ -13,14 +13,15 @@
 <meta property="og:site_name" content="weimang&#39;s blog">
 <meta property="og:description" content="什么是虚拟DOM从本质上来说，Virtual Dom是一个JavaScript对象，通过对象的方式来表示DOM结构。将页面的状态抽象为JS对象的形式，配合不同的渲染工具，使跨平台渲染成为可能。通过事务处理机制，将多次DOM修改的结果一次性的更新到页面上，从而有效的减少页面渲染的次数，减少修改DOM的重绘重排次数，提高渲染性能。虚拟DOM是对DOM的抽象，这个对象是更加轻量级的对DOM的描述。它设计">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/e44d4ebb48a74ffda63754428c9d5273~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp">
-<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/246e03a02e3e48ff941f921843bd8676~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp">
+<meta property="og:image" content="https://img2.imgtp.com/2024/04/14/KrmiXtrA.png">
+<meta property="og:image" content="https://img2.imgtp.com/2024/04/14/VUceGZRO.png">
+<meta property="og:image" content="https://img2.imgtp.com/2024/04/14/eVCxWVR9.png">
 <meta property="article:published_time" content="2024-04-09T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-04-14T04:37:53.498Z">
+<meta property="article:modified_time" content="2024-04-14T04:53:10.324Z">
 <meta property="article:author" content="weimang">
 <meta property="article:tag" content="React">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/e44d4ebb48a74ffda63754428c9d5273~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp">
+<meta name="twitter:image" content="https://img2.imgtp.com/2024/04/14/KrmiXtrA.png">
     
     
       
@@ -98,7 +99,7 @@
         <li><a class="icon" aria-label="上一篇" href="/blog/2024/04/12/CSFR%E6%94%BB%E5%87%BB%E5%8F%8A%E9%A2%84%E9%98%B2/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
-        <li><a class="icon" aria-label="下一篇" href="/blog/2024/03/28/%E8%B7%A8%E5%9F%9F%E6%9C%BA%E5%88%B6%E5%8F%8A%E5%AE%9E%E7%8E%B0/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="下一篇" href="/blog/2024/04/06/React%E5%87%BD%E6%95%B0%E7%BB%84%E4%BB%B6%E4%B8%8E%E7%B1%BB%E7%BB%84%E4%BB%B6/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
         <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
         <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
@@ -128,7 +129,7 @@
     
     
       <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E8%99%9A%E6%8B%9FDOM"><span class="toc-number">1.</span> <span class="toc-text">什么是虚拟DOM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8%E8%99%9A%E6%8B%9FDOM%EF%BC%9F"><span class="toc-number">2.</span> <span class="toc-text">为什么要使用虚拟DOM？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#React-diff%E7%AE%97%E6%B3%95%E7%9A%84%E5%8E%9F%E7%90%86"><span class="toc-number">3.</span> <span class="toc-text">React diff算法的原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#fiber%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">4.</span> <span class="toc-text">fiber是什么</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E8%99%9A%E6%8B%9FDOM"><span class="toc-number">1.</span> <span class="toc-text">什么是虚拟DOM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8%E8%99%9A%E6%8B%9FDOM%EF%BC%9F"><span class="toc-number">2.</span> <span class="toc-text">为什么要使用虚拟DOM？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#React-diff%E7%AE%97%E6%B3%95%E7%9A%84%E5%8E%9F%E7%90%86"><span class="toc-number">3.</span> <span class="toc-text">React diff算法的原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#fiber%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">4.</span> <span class="toc-text">fiber是什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">5.</span> <span class="toc-text">参考</span></a></li></ol>
       </div>
     
   </span>
@@ -179,17 +180,16 @@
 
   <div class="content e-content" itemprop="articleBody">
     <h2 id="什么是虚拟DOM"><a href="#什么是虚拟DOM" class="headerlink" title="什么是虚拟DOM"></a>什么是虚拟DOM</h2><p>从本质上来说，Virtual Dom是一个JavaScript对象，通过对象的方式来表示DOM结构。将页面的状态抽象为JS对象的形式，配合不同的渲染工具，使跨平台渲染成为可能。通过事务处理机制，将多次DOM修改的结果一次性的更新到页面上，从而有效的减少页面渲染的次数，减少修改DOM的重绘重排次数，提高渲染性能。<br>虚拟DOM是对DOM的抽象，这个对象是更加轻量级的对DOM的描述。它设计的最初目的，就是更好的跨平台，比如node.js就没有DOM，如果想实现SSR，那么一个方式就是借助虚拟dom，因为虚拟dom本身是js对象。 在代码渲染到页面之前，vue或者react会把代码转换成一个对象（虚拟DOM）。以对象的形式来描述真实dom结构，最终渲染到页面。在每次数据发生变化前，虚拟dom都会缓存一份，变化之时，现在的虚拟dom会与缓存的虚拟dom进行比较。在vue或者react内部封装了diff算法，通过这个算法来进行比较，渲染时修改改变的变化，原先没有发生改变的通过原先的数据进行渲染。</p>
-<h2 id="为什么要使用虚拟DOM？"><a href="#为什么要使用虚拟DOM？" class="headerlink" title="为什么要使用虚拟DOM？"></a>为什么要使用虚拟DOM？</h2><p>为什么要用 Virtual DOM：<br>（1）保证性能下限，在不进行手动优化的情况下，提供过得去的性能<br>下面对比一下修改DOM时真实DOM操作和Virtual DOM的过程，来看一下它们重排重绘的性能消耗∶</p>
-<p>真实DOM∶ 生成HTML字符串＋ 重建所有的DOM元素<br>Virtual DOM∶ 生成vNode＋ DOMDiff＋必要的DOM更新</p>
-<p>Virtual DOM的更新DOM的准备工作耗费更多的时间，也就是JS层面，相比于更多的DOM操作它的消费是极其便宜的。尤雨溪在社区论坛中说道∶ 框架给你的保证是，你不需要手动优化的情况下，我依然可以给你提供过得去的性能。<br>（2）跨平台<br>Virtual DOM本质上是JavaScript的对象，它可以很方便的跨平台操作，比如服务端渲染、uniapp等。</p>
-<p>虚拟DOM相对原生的DOM不一定是效率更高，如果只修改一个按钮的文案，那么虚拟 DOM 的操作无论如何都不可能比真实的 DOM 操作更快。在首次渲染大量DOM时，由于多了一层虚拟DOM的计算，虚拟DOM也会比innerHTML插入慢。它能保证性能下限，在真实DOM操作的时候进行针对性的优化时，还是更快的。所以要根据具体的场景进行探讨。<br>在整个 DOM 操作的演化过程中，其实主要矛盾并不在于性能，而在于开发者写得爽不爽，在于研发体验&#x2F;研发效率。虚拟 DOM 不是别的，正是前端开发们为了追求更好的研发体验和研发效率而创造出来的高阶产物。虚拟 DOM 并不一定会带来更好的性能，React 官方也从来没有把虚拟 DOM 作为性能层面的卖点对外输出过。虚拟 DOM 的优越之处在于，它能够在提供更爽、更高效的研发模式（也就是函数式的 UI 编程方式）的同时，仍然保持一个还不错的性能。</p>
-<h2 id="React-diff算法的原理"><a href="#React-diff算法的原理" class="headerlink" title="React diff算法的原理"></a>React diff算法的原理</h2><p>实际上，diff 算法探讨的就是虚拟 DOM 树发生变化后，生成 DOM 树更新补丁的方式。它通过对比新旧两株虚拟 DOM 树的变更差异，将更新补丁作用于真实 DOM，以最小成本完成视图更新。<br><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/e44d4ebb48a74ffda63754428c9d5273~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp" alt="dom"><br>具体的流程如下：</p>
+<h2 id="为什么要使用虚拟DOM？"><a href="#为什么要使用虚拟DOM？" class="headerlink" title="为什么要使用虚拟DOM？"></a>为什么要使用虚拟DOM？</h2><p>为什么要用 Virtual DOM：<br>（1）保证性能下限，在不进行手动优化的情况下，提供过得去的性能<br>下面对比一下修改DOM时真实DOM操作和Virtual DOM的过程，来看一下它们重排重绘的性能消耗∶<br>  真实DOM∶ 生成HTML字符串＋ 重建所有的DOM元素<br>  Virtual DOM∶ 生成vNode＋ DOMDiff＋必要的DOM更新<br>（2）跨平台<br>Virtual DOM本质上是JavaScript的对象，它可以很方便的跨平台操作，比如服务端渲染、uniapp等。<br>虚拟DOM相对原生的DOM不一定是效率更高，如果只修改一个按钮的文案，那么虚拟 DOM 的操作无论如何都不可能比真实的 DOM 操作更快。在首次渲染大量DOM时，由于多了一层虚拟DOM的计算，虚拟DOM也会比innerHTML插入慢。它能保证性能下限，在真实DOM操作的时候进行针对性的优化时，还是更快的。所以要根据具体的场景进行探讨。</p>
+<h2 id="React-diff算法的原理"><a href="#React-diff算法的原理" class="headerlink" title="React diff算法的原理"></a>React diff算法的原理</h2><p>实际上，diff 算法探讨的就是虚拟 DOM 树发生变化后，生成 DOM 树更新补丁的方式。它通过对比新旧两株虚拟 DOM 树的变更差异，将更新补丁作用于真实 DOM，以最小成本完成视图更新。<br><img src="https://img2.imgtp.com/2024/04/14/KrmiXtrA.png" alt="dom"></p>
+<p>具体的流程如下：</p>
 <p>真实的 DOM 首先会映射为虚拟 DOM；<br>当虚拟 DOM 发生变化后，就会根据差距计算生成 patch，这个 patch 是一个结构化的数据，内容包含了增加、更新、移除等；<br>根据 patch 去更新真实的 DOM，反馈到用户的界面上。</p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/246e03a02e3e48ff941f921843bd8676~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp" alt="diff"></p>
+<p><img src="https://img2.imgtp.com/2024/04/14/VUceGZRO.png" alt="diff"></p>
 <h2 id="fiber是什么"><a href="#fiber是什么" class="headerlink" title="fiber是什么"></a>fiber是什么</h2><p>React Fiber 是 React 16 中引入的新的协调引擎或重写的核心算法。目的是增强 React 应用程序的性能和响应性，特别是在动画、布局和手势等交互密集型任务中。Fiber 的核心设计理念是增量渲染（incremental rendering）——即将渲染工作分割成小的单元并在需要时暂停、中断或复用这些单元。</p>
-<p>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。<br>react fiber没法让比较的时间缩短，但它使得diff的过程被分成一小段一小段的，因为它有了“保存工作进度”的能力。js会比较一部分虚拟dom，然后让渡主线程，给浏览器去做其他工作，然后继续比较，依次往复，等到最后比较完成，一次性更新到视图上。<br>在新的架构中，每个节点有三个指针：分别指向第一个子节点、下一个兄弟节点、父节点。这种<strong>数据结构</strong>就是fiber，它的遍历规则如下：<br>！<a target="_blank" rel="noopener" href="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b9a4ecf240734a45a3557fdef7d885d9~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp">Fiber</a><br>从根节点开始，依次遍历该节点的子节点、兄弟节点，如果两者都遍历了，则回到它的父节点；<br>当一个节点的所有子节点遍历完成，才认为该节点遍历完成；<br>根据这个规则，同样在图中标出了节点遍历完成的顺序。跟树结构对比会发现，虽然数据结构不同，但是节点的遍历开始和完成顺序一模一样。不同的是，当遍历发生中断时，只要保留下当前节点的索引，断点是可以恢复的——因为每个节点都保持着对其父节点的索引。</p>
+<p>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。<br>react fiber没法让比较的时间缩短，但它使得diff的过程被分成一小段一小段的，因为它有了“保存工作进度”的能力。js会比较一部分虚拟dom，然后让渡主线程，给浏览器去做其他工作，然后继续比较，依次往复，等到最后比较完成，一次性更新到视图上。<br>在新的架构中，每个节点有三个指针：分别指向第一个子节点、下一个兄弟节点、父节点。这种<strong>数据结构</strong>就是fiber，它的遍历规则如下：<br><img src="https://img2.imgtp.com/2024/04/14/eVCxWVR9.png" alt="Fiber"><br>从根节点开始，依次遍历该节点的子节点、兄弟节点，如果两者都遍历了，则回到它的父节点；<br>当一个节点的所有子节点遍历完成，才认为该节点遍历完成；<br>根据这个规则，同样在图中标出了节点遍历完成的顺序。跟树结构对比会发现，虽然数据结构不同，但是节点的遍历开始和完成顺序一模一样。不同的是，当遍历发生中断时，只要保留下当前节点的索引，断点是可以恢复的——因为每个节点都保持着对其父节点的索引。</p>
 <p>这种数据结构之所以被叫做fiber，因为fiber的翻译是纤程，它被认为是<strong>协程</strong>的一种实现形式。协程是比线程更小的调度单位：它的开启、暂停可以被程序员所控制。具体来说，react fiber是通过requestIdleCallback这个api去控制的组件渲染的“进度条”。<br>requesetIdleCallback是一个属于宏任务的回调，就像setTimeout一样。不同的是，setTimeout的执行时机由我们传入的回调时间去控制，requesetIdleCallback是受屏幕的刷新率去控制。本文不对这部分做深入探讨，只需要知道它每隔16ms会被调用一次，它的回调函数可以获取本次可以执行的时间，每一个16ms除了requesetIdleCallback的回调之外，还有其他工作，所以能使用的时间是不确定的，但只要时间到了，就会停下节点的遍历。<br>react因为先天的不足——无法精确更新，所以需要react fiber把组件渲染工作切片；而vue基于数据劫持，更新粒度很小，没有这个压力；<br>react fiber这种数据结构使得节点可以回溯到其父节点，只要保留下中断的节点索引，就可以恢复之前的工作进度；</p>
 <p>React Fiber 是针对就协调器重写的完全向后兼容的一个版本。React 的这种新的协调算法被称为 Fiber Reconciler。这个名字来自于 fiber，它经常被用来表示 DOM 树的节点。<br>Fiber 协调器的主要目标是增量渲染，更好更平滑地渲染 UI 动画和手势，以及用户互动的响应性。协调器还允许你将工作分为多个块，并将渲染工作分为多个帧。它还增加了为每个工作单元定义优先级的能力，以及暂停、重复使用和中止工作的能力。<br>React 的其他一些特性包括从一个渲染函数返回多个元素，支持更好的错误处理（我们可以使用 componentDidCatch 方法来获得更清晰的错误信息），以及 portals。<br>在计算新的渲染更新时，React 会多次回访主线程。因此，高优先级的工作可以跳过低优先级的工作。React 在内部为每个更新定义了优先级。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7077545184807878692searchId=202404141235390F9BCB93882E3BFD6922">https://juejin.cn/post/7077545184807878692searchId=202404141235390F9BCB93882E3BFD6922</a></p>
 
   </div>
 </article>
@@ -223,7 +223,7 @@
     
     
       <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E8%99%9A%E6%8B%9FDOM"><span class="toc-number">1.</span> <span class="toc-text">什么是虚拟DOM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8%E8%99%9A%E6%8B%9FDOM%EF%BC%9F"><span class="toc-number">2.</span> <span class="toc-text">为什么要使用虚拟DOM？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#React-diff%E7%AE%97%E6%B3%95%E7%9A%84%E5%8E%9F%E7%90%86"><span class="toc-number">3.</span> <span class="toc-text">React diff算法的原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#fiber%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">4.</span> <span class="toc-text">fiber是什么</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E8%99%9A%E6%8B%9FDOM"><span class="toc-number">1.</span> <span class="toc-text">什么是虚拟DOM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8%E8%99%9A%E6%8B%9FDOM%EF%BC%9F"><span class="toc-number">2.</span> <span class="toc-text">为什么要使用虚拟DOM？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#React-diff%E7%AE%97%E6%B3%95%E7%9A%84%E5%8E%9F%E7%90%86"><span class="toc-number">3.</span> <span class="toc-text">React diff算法的原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#fiber%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">4.</span> <span class="toc-text">fiber是什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">5.</span> <span class="toc-text">参考</span></a></li></ol>
       </div>
     
 
