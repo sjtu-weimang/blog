@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="路由的创建和注入创建路由实例：在文件 src&#x2F;router&#x2F;index.js 中创建路由实例对象，并配置路由对应关系。 123456789101112131415161718192021222324&#x2F;&#x2F; 导入创建路由的函数import &amp;#123; createBrowserRouter &amp;#125; from &amp;#x27;react-router-dom&amp;#x27;;&#x2F;&#x2F; 创">
+<meta property="og:type" content="article">
+<meta property="og:title" content="react-router-v6用法实例">
+<meta property="og:url" content="https://sjtu-weimang.github.io/blog/2024/03/16/react-router-v6/index.html">
+<meta property="og:site_name" content="weimang&#39;s blog">
+<meta property="og:description" content="路由的创建和注入创建路由实例：在文件 src&#x2F;router&#x2F;index.js 中创建路由实例对象，并配置路由对应关系。 123456789101112131415161718192021222324&#x2F;&#x2F; 导入创建路由的函数import &amp;#123; createBrowserRouter &amp;#125; from &amp;#x27;react-router-dom&amp;#x27;;&#x2F;&#x2F; 创">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img2.imgtp.com/2024/04/20/F0YYsHil.png">
+<meta property="article:published_time" content="2024-03-15T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-04-20T09:29:37.746Z">
+<meta property="article:author" content="weimang">
+<meta property="article:tag" content="React">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img2.imgtp.com/2024/04/20/F0YYsHil.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/blog/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/blog/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>react-router-v6用法实例</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/blog/">首页</a></li><!--
+     --><!--
+       --><li><a href="/blog/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/sjtu-weimang?tab=repositories">项目</a></li><!--
+     --><!--
+       --><li><a href="/blog/search/">搜索</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/blog/2024/03/21/javacript%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/blog/2024/02/26/%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81%E7%9A%84%E5%AE%9E%E7%8E%B0/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://sjtu-weimang.github.io/blog/2024/03/16/react-router-v6/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://sjtu-weimang.github.io/blog/2024/03/16/react-router-v6/&text=react-router-v6用法实例"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://sjtu-weimang.github.io/blog/2024/03/16/react-router-v6/&title=react-router-v6用法实例"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://sjtu-weimang.github.io/blog/2024/03/16/react-router-v6/&is_video=false&description=react-router-v6用法实例"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=react-router-v6用法实例&body=Check out this article: https://sjtu-weimang.github.io/blog/2024/03/16/react-router-v6/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://sjtu-weimang.github.io/blog/2024/03/16/react-router-v6/&title=react-router-v6用法实例"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://sjtu-weimang.github.io/blog/2024/03/16/react-router-v6/&title=react-router-v6用法实例"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://sjtu-weimang.github.io/blog/2024/03/16/react-router-v6/&title=react-router-v6用法实例"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://sjtu-weimang.github.io/blog/2024/03/16/react-router-v6/&title=react-router-v6用法实例"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://sjtu-weimang.github.io/blog/2024/03/16/react-router-v6/&name=react-router-v6用法实例&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://sjtu-weimang.github.io/blog/2024/03/16/react-router-v6/&t=react-router-v6用法实例"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1%E7%9A%84%E5%88%9B%E5%BB%BA%E5%92%8C%E6%B3%A8%E5%85%A5"><span class="toc-number">1.</span> <span class="toc-text">路由的创建和注入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1%E5%AF%BC%E8%88%AA"><span class="toc-number">2.</span> <span class="toc-text">路由导航</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E8%B7%AF%E7%94%B1%E5%AF%BC%E8%88%AA%EF%BC%9F"><span class="toc-number">2.1.</span> <span class="toc-text">什么是路由导航？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A3%B0%E6%98%8E%E5%BC%8F%E8%B7%AF%E7%94%B1%E5%AF%BC%E8%88%AA"><span class="toc-number">2.2.</span> <span class="toc-text">声明式路由导航</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E5%BC%8F%E8%B7%AF%E7%94%B1%E5%AF%BC%E8%88%AA"><span class="toc-number">2.3.</span> <span class="toc-text">函数式路由导航</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1%E5%AF%BC%E8%88%AA%E4%BC%A0%E5%8F%82"><span class="toc-number">2.4.</span> <span class="toc-text">路由导航传参</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#searchParams-%E4%BC%A0%E5%8F%82"><span class="toc-number">2.4.1.</span> <span class="toc-text">searchParams 传参</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Params-%E4%BC%A0%E5%8F%82"><span class="toc-number">2.4.2.</span> <span class="toc-text">Params 传参</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B5%8C%E5%A5%97%E8%B7%AF%E7%94%B1%E9%85%8D%E7%BD%AE"><span class="toc-number">3.</span> <span class="toc-text">嵌套路由配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1%E6%A8%A1%E5%BC%8F"><span class="toc-number">4.</span> <span class="toc-text">路由模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">5.</span> <span class="toc-text">参考</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        react-router-v6用法实例
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">weimang</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2024-03-15T16:00:00.000Z" class="dt-published" itemprop="datePublished">2024-03-16</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/blog/categories/React/">React</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/blog/tags/React/" rel="tag">React</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h2 id="路由的创建和注入"><a href="#路由的创建和注入" class="headerlink" title="路由的创建和注入"></a>路由的创建和注入</h2><p>创建路由实例：<br>在文件 src&#x2F;router&#x2F;index.js 中创建路由实例对象，并配置路由对应关系。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 导入创建路由的函数</span></span><br><span class="line"><span class="keyword">import</span> &#123; createBrowserRouter &#125; <span class="keyword">from</span> <span class="string">&#x27;react-router-dom&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建router路由实例对象，并配置路由对应关系（路由数组）</span></span><br><span class="line"><span class="keyword">const</span> router = <span class="title function_">createBrowserRouter</span>([</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="comment">// 需要访问的路径</span></span><br><span class="line">    <span class="attr">path</span>: <span class="string">&#x27;/&#x27;</span>,</span><br><span class="line">    <span class="attr">element</span>: <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>Login Page<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">path</span>: <span class="string">&#x27;/home&#x27;</span>,</span><br><span class="line">    <span class="attr">element</span>: <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>Home Page<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    ...<span class="comment">//其他路由组件</span></span><br><span class="line">  &#125;</span><br><span class="line">  &#123;</span><br><span class="line">      </span><br><span class="line">  &#125;</span><br><span class="line">]);</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用es6标准导出</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> router;</span><br></pre></td></tr></table></figure>
+
+<p>在文件 src&#x2F;index.js 中引入路由实例对象，并使用路由实例对象创建路由器。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 导入路由实例对象</span></span><br><span class="line"><span class="keyword">import</span> router <span class="keyword">from</span> <span class="string">&#x27;./router&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建路由器，并使用路由实例对象</span></span><br><span class="line"><span class="keyword">const</span> root = <span class="title class_">ReactDOM</span>.<span class="title function_">createRoot</span>(<span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;root&#x27;</span>));</span><br><span class="line">root.<span class="title function_">render</span>(</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">React.StrictMode</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    &#123;/* 使用 redux 的时候，需要用 Provider 包裹 RouterProvider */&#125;</span></span><br><span class="line"><span class="language-xml">    &#123;/* 路由绑定，注入路由实例对象 */&#125;</span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">RouterProvider</span> <span class="attr">router</span>=<span class="string">&#123;router&#125;</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;/<span class="name">React.StrictMode</span>&gt;</span></span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<h2 id="路由导航"><a href="#路由导航" class="headerlink" title="路由导航"></a>路由导航</h2><h3 id="什么是路由导航？"><a href="#什么是路由导航？" class="headerlink" title="什么是路由导航？"></a>什么是路由导航？</h3><p>路由系统中的多个路由之间需要进行<strong>路由跳转</strong>，并且在跳转的同时有可能需要<strong>传递参数</strong>进行通信；</p>
+<h3 id="声明式路由导航"><a href="#声明式路由导航" class="headerlink" title="声明式路由导航"></a>声明式路由导航</h3><p>在模板中通过 $<Link/>$ 组件描述出要跳转到哪里（通过to属性进行描述），比如后台管理系统在左侧的菜单通常使用这种方式进行跳转；<br>❗ 语法说明：<br>通过给组件的to属性指定要跳转的路由path，组件会被渲染为浏览器支持的a链接；<br>如果需要传参直接通过字符串拼接的方式拼接参数即可；</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">Link</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;react-router-dom&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">Link</span> <span class="attr">to</span>=<span class="string">&#123;</span>&#x27;<span class="attr">path路径</span>&#x27;&#125;&gt;</span>XXX<span class="tag">&lt;/<span class="name">Link</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<p>使用场景：多用于菜单的跳转</p>
+<h3 id="函数式路由导航"><a href="#函数式路由导航" class="headerlink" title="函数式路由导航"></a>函数式路由导航</h3><p>通过useNavigate钩子得到的导航方法，然后通过调用方法 以命令式的形式进行路由跳转。<br>比如想在登录请求完毕之后跳转就可以选择这种方式，更加灵活；<br>❗ 语法说明：<br>通过调用 navigate 方法传入地址 path 实现跳转；</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; useNavigate &#125; <span class="keyword">from</span> <span class="string">&#x27;react-router-dom&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// useNavigate 的调用必须写在组件里面；</span></span><br><span class="line"><span class="comment">// navigate接受一个参数：需要跳转到的路径</span></span><br><span class="line"><span class="keyword">const</span> navigate = <span class="title function_">useNavigate</span>();</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">Article</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> navigate = <span class="title function_">useNavigate</span>();</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">div</span>&gt;</span>文章页面<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      &#123;/* 声明式 */&#125;</span></span><br><span class="line"><span class="language-xml">      &#123;/* <span class="tag">&lt;<span class="name">Link</span> <span class="attr">to</span>=<span class="string">&quot;/login&quot;</span>&gt;</span>登录页面<span class="tag">&lt;/<span class="name">Link</span>&gt;</span> */&#125;</span></span><br><span class="line"><span class="language-xml">      </span></span><br><span class="line"><span class="language-xml">      &#123;/* 编程式 */&#125;</span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;()</span> =&gt;</span> navigate(&#x27;/login&#x27;)&#125;&gt;跳转登录页面<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>)&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>使用场景：写在逻辑代码里面；</p>
+<h3 id="路由导航传参"><a href="#路由导航传参" class="headerlink" title="路由导航传参"></a>路由导航传参</h3><h4 id="searchParams-传参"><a href="#searchParams-传参" class="headerlink" title="searchParams 传参"></a>searchParams 传参</h4><p>传参：<br>字符串拼接（查询字符串）；</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; useNavigate &#125; <span class="keyword">from</span> <span class="string">&#x27;react-router-dom&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> navigate = <span class="title function_">useNavigate</span>();</span><br><span class="line"><span class="title function_">navigate</span>(<span class="string">&#x27;/article?userId=1001&amp;articleId=abcd&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>接收参数:<br>调用useSearchParams 钩子函数，从返回结果（数组）中解构出params对象，调用该对象的get方法，将需要的 参数名字 传递给get方法即可；</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; useSearchParams &#125; <span class="keyword">from</span> <span class="string">&#x27;react-router-dom&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> [params] = <span class="title function_">useSearchParams</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(params.<span class="title function_">get</span>(<span class="string">&#x27;userId&#x27;</span>));</span><br></pre></td></tr></table></figure>
+
+<h4 id="Params-传参"><a href="#Params-传参" class="headerlink" title="Params 传参"></a>Params 传参</h4><p>传参：<br>通过路由配置的 path 属性中使用 : 符号占位，然后在跳转的时候通过 params 属性传递参数；</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; useNavigate&#125; <span class="keyword">from</span> <span class="string">&#x27;react-router-dom&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> navigate = <span class="title function_">useNavigate</span>();</span><br><span class="line"><span class="comment">//path 属性中使用 : 符号占位，然后在跳转的时候通过 params 属性传递参数</span></span><br><span class="line"><span class="comment">//path: &#x27;/article/:userId/:articleId&#x27;</span></span><br><span class="line"><span class="title function_">navigate</span>(<span class="string">&#x27;/article/1001/abcd&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>接收参数：<br>通过useParams 钩子函数，从返回结果（对象）中解构出 params 对象，调用该对象的属性即可；</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; useParams &#125; <span class="keyword">from</span> <span class="string">&#x27;react-router-dom&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> [params] = <span class="title function_">useParams</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(params.<span class="property">userId</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="嵌套路由配置"><a href="#嵌套路由配置" class="headerlink" title="嵌套路由配置"></a>嵌套路由配置</h2><p>1.在创建路由组件时，使用&lt;outlet&#x2F;&gt;配置二级路由的渲染出口<br>2.在配置路由时，使用children属性配置路由嵌套关系。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// About 组件</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">About</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>我是关于组件<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">About</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Board 组件</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">Board</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>我是面板组件<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">Board</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// Layout 组件</span></span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">Link</span>, <span class="title class_">Outlet</span>, useNavigate &#125; <span class="keyword">from</span> <span class="string">&#x27;react-router-dom&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="title function_">Layout</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> navigate = <span class="title function_">useNavigate</span>();</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">div</span>&gt;</span>一级路由<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">Link</span> <span class="attr">to</span>=<span class="string">&quot;/layout/board&quot;</span>&gt;</span>面板<span class="tag">&lt;/<span class="name">Link</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;()</span> =&gt;</span> navigate(&#x27;/layout/about&#x27;)&#125;&gt;关于<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      </span></span><br><span class="line"><span class="language-xml">      &#123;/* 二级路由出口 */&#125;</span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">Outlet</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">Layout</span>;</span><br></pre></td></tr></table></figure>
+
+<p>配置路由：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 只写部分代码</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">Layout</span> <span class="keyword">from</span> <span class="string">&#x27;../pages/Layout&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">About</span> <span class="keyword">from</span> <span class="string">&#x27;../pages/About&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">Board</span> <span class="keyword">from</span> <span class="string">&#x27;../pages/Board&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> router = <span class="title function_">createBrowserRouter</span>([</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">path</span>: <span class="string">&#x27;/layout&#x27;</span>,</span><br><span class="line">    <span class="attr">element</span>: <span class="language-xml"><span class="tag">&lt;<span class="name">Layout</span> /&gt;</span></span>,</span><br><span class="line">    <span class="attr">children</span>: [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">path</span>: <span class="string">&#x27;about&#x27;</span>,</span><br><span class="line">        <span class="attr">element</span>: <span class="language-xml"><span class="tag">&lt;<span class="name">About</span> /&gt;</span></span></span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">path</span>: <span class="string">&#x27;board&#x27;</span>,</span><br><span class="line">        <span class="attr">element</span>: <span class="language-xml"><span class="tag">&lt;<span class="name">Board</span> /&gt;</span></span></span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">]);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="路由模式"><a href="#路由模式" class="headerlink" title="路由模式"></a>路由模式</h2><p>各个主流框架的路由常用的路由模式有两种，history模式和hash模式；<br>ReactRouter分别由：createBrowerRouter和createHashRouter函数负责创建，两种路由模式对比如下：<br><img src="https://img2.imgtp.com/2024/04/20/F0YYsHil.png" alt="img"></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7326268989011820553?searchId=202404201543180178E8A5D0EC6009F52D#heading-6">https://juejin.cn/post/7326268989011820553?searchId=202404201543180178E8A5D0EC6009F52D#heading-6</a><br>来源：掘金</p>
+
+  </div>
+</article>
+
+
+    <div class="blog-post-comments">
+        <div id="utterances_thread">
+            <noscript>加载评论需要在浏览器启用 JavaScript 脚本支持。</noscript>
+        </div>
+    </div>
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/blog/">首页</a></li>
+        
+          <li><a href="/blog/archives/">归档</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="https://github.com/sjtu-weimang?tab=repositories">项目</a></li>
+        
+          <li><a href="/blog/search/">搜索</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1%E7%9A%84%E5%88%9B%E5%BB%BA%E5%92%8C%E6%B3%A8%E5%85%A5"><span class="toc-number">1.</span> <span class="toc-text">路由的创建和注入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1%E5%AF%BC%E8%88%AA"><span class="toc-number">2.</span> <span class="toc-text">路由导航</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E8%B7%AF%E7%94%B1%E5%AF%BC%E8%88%AA%EF%BC%9F"><span class="toc-number">2.1.</span> <span class="toc-text">什么是路由导航？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A3%B0%E6%98%8E%E5%BC%8F%E8%B7%AF%E7%94%B1%E5%AF%BC%E8%88%AA"><span class="toc-number">2.2.</span> <span class="toc-text">声明式路由导航</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E5%BC%8F%E8%B7%AF%E7%94%B1%E5%AF%BC%E8%88%AA"><span class="toc-number">2.3.</span> <span class="toc-text">函数式路由导航</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1%E5%AF%BC%E8%88%AA%E4%BC%A0%E5%8F%82"><span class="toc-number">2.4.</span> <span class="toc-text">路由导航传参</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#searchParams-%E4%BC%A0%E5%8F%82"><span class="toc-number">2.4.1.</span> <span class="toc-text">searchParams 传参</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Params-%E4%BC%A0%E5%8F%82"><span class="toc-number">2.4.2.</span> <span class="toc-text">Params 传参</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B5%8C%E5%A5%97%E8%B7%AF%E7%94%B1%E9%85%8D%E7%BD%AE"><span class="toc-number">3.</span> <span class="toc-text">嵌套路由配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1%E6%A8%A1%E5%BC%8F"><span class="toc-number">4.</span> <span class="toc-text">路由模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">5.</span> <span class="toc-text">参考</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://sjtu-weimang.github.io/blog/2024/03/16/react-router-v6/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://sjtu-weimang.github.io/blog/2024/03/16/react-router-v6/&text=react-router-v6用法实例"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://sjtu-weimang.github.io/blog/2024/03/16/react-router-v6/&title=react-router-v6用法实例"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://sjtu-weimang.github.io/blog/2024/03/16/react-router-v6/&is_video=false&description=react-router-v6用法实例"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=react-router-v6用法实例&body=Check out this article: https://sjtu-weimang.github.io/blog/2024/03/16/react-router-v6/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://sjtu-weimang.github.io/blog/2024/03/16/react-router-v6/&title=react-router-v6用法实例"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://sjtu-weimang.github.io/blog/2024/03/16/react-router-v6/&title=react-router-v6用法实例"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://sjtu-weimang.github.io/blog/2024/03/16/react-router-v6/&title=react-router-v6用法实例"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://sjtu-weimang.github.io/blog/2024/03/16/react-router-v6/&title=react-router-v6用法实例"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://sjtu-weimang.github.io/blog/2024/03/16/react-router-v6/&name=react-router-v6用法实例&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://sjtu-weimang.github.io/blog/2024/03/16/react-router-v6/&t=react-router-v6用法实例"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+      
+        
+          2021-2025
+            weimang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       -->
+          <li><a href="/blog/">
+              首页
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a href="/blog/archives/">
+              归档
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a target="_blank" rel="noopener" href="https://github.com/sjtu-weimang?tab=repositories">
+              项目
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a href="/blog/search/">
+              搜索
+            </a></li><!--
+     -->
+          
+      </ul>
+    </nav>
+  </div>
+</footer>
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/blog/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+    <script type="text/javascript">
+      var utterances_repo = 'owner/githubrepo';
+      var utterances_issue_term = 'pathname';
+      var utterances_label = 'Comment';
+      var utterances_theme = 'github-dark';
+
+      (function(){
+          var script = document.createElement('script');
+
+          script.src = 'https://utteranc.es/client.js';
+          script.setAttribute('repo', utterances_repo);
+          script.setAttribute('issue-term', 'pathname');
+          script.setAttribute('label', utterances_label);
+          script.setAttribute('theme', utterances_theme);
+          script.setAttribute('crossorigin', 'anonymous');
+          script.async = true;
+          (document.getElementById('utterances_thread')).appendChild(script);
+      }());
+  </script>
+
+</body>
+</html>
