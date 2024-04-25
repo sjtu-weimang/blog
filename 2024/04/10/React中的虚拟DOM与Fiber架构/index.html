@@ -6,22 +6,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="什么是虚拟DOM从本质上来说，Virtual Dom是一个JavaScript对象，通过对象的方式来表示DOM结构。将页面的状态抽象为JS对象的形式，配合不同的渲染工具，使跨平台渲染成为可能。通过事务处理机制，将多次DOM修改的结果一次性的更新到页面上，从而有效的减少页面渲染的次数，减少修改DOM的重绘重排次数，提高渲染性能。虚拟DOM是对DOM的抽象，这个对象是更加轻量级的对DOM的描述。它设计">
+    <meta name="description" content="什么是虚拟DOM 从本质上来说，Virtual Dom是一个JavaScript对象，通过对象的方式来表示DOM结构。将页面的状态抽象为JS对象的形式，配合不同的渲染工具，使跨平台渲染成为可能。通过事务处理机制，将多次DOM修改的结果一次性的更新到页面上，从而有效的减少页面渲染的次数，减少修改DOM的重绘重排次数，提高渲染性能。 虚拟DOM是对DOM的抽象，这个对象是更加轻量级的对DOM的描">
 <meta property="og:type" content="article">
 <meta property="og:title" content="React中的虚拟DOM与Fiber架构">
 <meta property="og:url" content="https://sjtu-weimang.github.io/blog/2024/04/10/React%E4%B8%AD%E7%9A%84%E8%99%9A%E6%8B%9FDOM%E4%B8%8EFiber%E6%9E%B6%E6%9E%84/index.html">
 <meta property="og:site_name" content="weimang&#39;s blog">
-<meta property="og:description" content="什么是虚拟DOM从本质上来说，Virtual Dom是一个JavaScript对象，通过对象的方式来表示DOM结构。将页面的状态抽象为JS对象的形式，配合不同的渲染工具，使跨平台渲染成为可能。通过事务处理机制，将多次DOM修改的结果一次性的更新到页面上，从而有效的减少页面渲染的次数，减少修改DOM的重绘重排次数，提高渲染性能。虚拟DOM是对DOM的抽象，这个对象是更加轻量级的对DOM的描述。它设计">
+<meta property="og:description" content="什么是虚拟DOM 从本质上来说，Virtual Dom是一个JavaScript对象，通过对象的方式来表示DOM结构。将页面的状态抽象为JS对象的形式，配合不同的渲染工具，使跨平台渲染成为可能。通过事务处理机制，将多次DOM修改的结果一次性的更新到页面上，从而有效的减少页面渲染的次数，减少修改DOM的重绘重排次数，提高渲染性能。 虚拟DOM是对DOM的抽象，这个对象是更加轻量级的对DOM的描">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://img2.imgtp.com/2024/04/14/KrmiXtrA.png">
 <meta property="og:image" content="https://img2.imgtp.com/2024/04/14/VUceGZRO.png">
 <meta property="og:image" content="https://img2.imgtp.com/2024/04/14/eVCxWVR9.png">
 <meta property="article:published_time" content="2024-04-09T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-04-14T10:13:15.712Z">
+<meta property="article:modified_time" content="2024-04-20T13:50:28.641Z">
 <meta property="article:author" content="weimang">
 <meta property="article:tag" content="React">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://img2.imgtp.com/2024/04/14/KrmiXtrA.png">
+<meta name="twitter:image" content="https://img2.imgtp.com/2024/04/14/VUceGZRO.png">
     
     
       
@@ -129,7 +128,7 @@
     
     
       <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E8%99%9A%E6%8B%9FDOM"><span class="toc-number">1.</span> <span class="toc-text">什么是虚拟DOM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8%E8%99%9A%E6%8B%9FDOM%EF%BC%9F"><span class="toc-number">2.</span> <span class="toc-text">为什么要使用虚拟DOM？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#React-diff%E7%AE%97%E6%B3%95%E7%9A%84%E5%8E%9F%E7%90%86"><span class="toc-number">3.</span> <span class="toc-text">React diff算法的原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#fiber%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">4.</span> <span class="toc-text">fiber是什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">5.</span> <span class="toc-text">参考</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E8%99%9A%E6%8B%9Fdom"><span class="toc-number">1.</span> <span class="toc-text">什么是虚拟DOM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8%E8%99%9A%E6%8B%9Fdom"><span class="toc-number">2.</span> <span class="toc-text">为什么要使用虚拟DOM？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#react-diff%E7%AE%97%E6%B3%95%E7%9A%84%E5%8E%9F%E7%90%86"><span class="toc-number">3.</span> <span class="toc-text">React diff算法的原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#fiber%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">4.</span> <span class="toc-text">fiber是什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%BB%E5%8A%A1%E4%BC%98%E5%85%88%E7%BA%A7%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86%E7%9A%84%E5%BA%95%E5%B1%82%E6%A8%A1%E5%9E%8B%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">5.</span> <span class="toc-text">任务优先级如何处理的？底层模型是什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%99%E7%A7%8D%E6%A8%A1%E5%9E%8B%E4%B8%8B%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E4%BB%BB%E5%8A%A1%E4%B8%AD%E6%96%AD%E7%9A%84%E7%94%A8%E4%BA%86%E4%BB%80%E4%B9%88%E6%8A%80%E6%9C%AF"><span class="toc-number">6.</span> <span class="toc-text">这种模型下，如何实现任务中断的？用了什么技术？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">7.</span> <span class="toc-text">参考</span></a></li></ol>
       </div>
     
   </span>
@@ -179,17 +178,131 @@
   
 
   <div class="content e-content" itemprop="articleBody">
-    <h2 id="什么是虚拟DOM"><a href="#什么是虚拟DOM" class="headerlink" title="什么是虚拟DOM"></a>什么是虚拟DOM</h2><p>从本质上来说，Virtual Dom是一个JavaScript对象，通过对象的方式来表示DOM结构。将页面的状态抽象为JS对象的形式，配合不同的渲染工具，使跨平台渲染成为可能。通过事务处理机制，将多次DOM修改的结果一次性的更新到页面上，从而有效的减少页面渲染的次数，减少修改DOM的重绘重排次数，提高渲染性能。<br>虚拟DOM是对DOM的抽象，这个对象是更加轻量级的对DOM的描述。它设计的最初目的，就是更好的跨平台，比如node.js就没有DOM，如果想实现SSR，那么一个方式就是借助虚拟dom，因为虚拟dom本身是js对象。 在代码渲染到页面之前，vue或者react会把代码转换成一个对象（虚拟DOM）。以对象的形式来描述真实dom结构，最终渲染到页面。在每次数据发生变化前，虚拟dom都会缓存一份，变化之时，现在的虚拟dom会与缓存的虚拟dom进行比较。在vue或者react内部封装了diff算法，通过这个算法来进行比较，渲染时修改改变的变化，原先没有发生改变的通过原先的数据进行渲染。</p>
-<h2 id="为什么要使用虚拟DOM？"><a href="#为什么要使用虚拟DOM？" class="headerlink" title="为什么要使用虚拟DOM？"></a>为什么要使用虚拟DOM？</h2><p>为什么要用 Virtual DOM：<br>（1）保证性能下限，在不进行手动优化的情况下，提供过得去的性能<br>下面对比一下修改DOM时真实DOM操作和Virtual DOM的过程，来看一下它们重排重绘的性能消耗∶<br>  真实DOM∶ 生成HTML字符串＋ 重建所有的DOM元素<br>  Virtual DOM∶ 生成vNode＋ DOMDiff＋必要的DOM更新<br>（2）跨平台<br>Virtual DOM本质上是JavaScript的对象，它可以很方便的跨平台操作，比如服务端渲染、uniapp等。<br>虚拟DOM相对原生的DOM不一定是效率更高，如果只修改一个按钮的文案，那么虚拟 DOM 的操作无论如何都不可能比真实的 DOM 操作更快。在首次渲染大量DOM时，由于多了一层虚拟DOM的计算，虚拟DOM也会比innerHTML插入慢。它能保证性能下限，在真实DOM操作的时候进行针对性的优化时，还是更快的。所以要根据具体的场景进行探讨。</p>
-<h2 id="React-diff算法的原理"><a href="#React-diff算法的原理" class="headerlink" title="React diff算法的原理"></a>React diff算法的原理</h2><p>实际上，diff 算法探讨的就是虚拟 DOM 树发生变化后，生成 DOM 树更新补丁的方式。它通过对比新旧两株虚拟 DOM 树的变更差异，将更新补丁作用于真实 DOM，以最小成本完成视图更新。<br><img src="https://img2.imgtp.com/2024/04/14/KrmiXtrA.png" alt="dom"></p>
+    <h2 id="什么是虚拟dom">什么是虚拟DOM</h2>
+<p>从本质上来说，Virtual
+Dom是一个JavaScript对象，通过对象的方式来表示DOM结构。将页面的状态抽象为JS对象的形式，配合不同的渲染工具，使跨平台渲染成为可能。通过事务处理机制，将多次DOM修改的结果一次性的更新到页面上，从而有效的减少页面渲染的次数，减少修改DOM的重绘重排次数，提高渲染性能。
+虚拟DOM是对DOM的抽象，这个对象是更加轻量级的对DOM的描述。它设计的最初目的，就是更好的跨平台，比如node.js就没有DOM，如果想实现SSR，那么一个方式就是借助虚拟dom，因为虚拟dom本身是js对象。
+在代码渲染到页面之前，vue或者react会把代码转换成一个对象（虚拟DOM）。以对象的形式来描述真实dom结构，最终渲染到页面。在每次数据发生变化前，虚拟dom都会缓存一份，变化之时，现在的虚拟dom会与缓存的虚拟dom进行比较。在vue或者react内部封装了diff算法，通过这个算法来进行比较，渲染时修改改变的变化，原先没有发生改变的通过原先的数据进行渲染。</p>
+<h2 id="为什么要使用虚拟dom">为什么要使用虚拟DOM？</h2>
+<p>为什么要用 Virtual DOM：
+（1）保证性能下限，在不进行手动优化的情况下，提供过得去的性能
+下面对比一下修改DOM时真实DOM操作和Virtual
+DOM的过程，来看一下它们重排重绘的性能消耗∶ 真实DOM∶ 生成HTML字符串＋
+重建所有的DOM元素 Virtual DOM∶ 生成vNode＋ DOMDiff＋必要的DOM更新
+（2）跨平台 Virtual
+DOM本质上是JavaScript的对象，它可以很方便的跨平台操作，比如服务端渲染、uniapp等。
+虚拟DOM相对原生的DOM不一定是效率更高，如果只修改一个按钮的文案，那么虚拟
+DOM 的操作无论如何都不可能比真实的 DOM
+操作更快。在首次渲染大量DOM时，由于多了一层虚拟DOM的计算，虚拟DOM也会比innerHTML插入慢。它能保证性能下限，在真实DOM操作的时候进行针对性的优化时，还是更快的。所以要根据具体的场景进行探讨。</p>
+<h2 id="react-diff算法的原理">React diff算法的原理</h2>
+<p>实际上，diff 算法探讨的就是虚拟 DOM 树发生变化后，生成 DOM
+树更新补丁的方式。它通过对比新旧两株虚拟 DOM
+树的变更差异，将更新补丁作用于真实 DOM，以最小成本完成视图更新。 <img
+src="https://img2.imgtp.com/2024/04/14/KrmiXtrA.png" alt="dom" /></p>
 <p>具体的流程如下：</p>
-<p>真实的 DOM 首先会映射为虚拟 DOM；<br>当虚拟 DOM 发生变化后，就会根据差距计算生成 patch，这个 patch 是一个结构化的数据，内容包含了增加、更新、移除等；<br>根据 patch 去更新真实的 DOM，反馈到用户的界面上。</p>
-<p><img src="https://img2.imgtp.com/2024/04/14/VUceGZRO.png" alt="diff"></p>
-<h2 id="fiber是什么"><a href="#fiber是什么" class="headerlink" title="fiber是什么"></a>fiber是什么</h2><p>React Fiber 是 React 16 中引入的新的协调引擎或重写的核心算法。目的是增强 React 应用程序的性能和响应性，特别是在动画、布局和手势等交互密集型任务中。Fiber 的核心设计理念是增量渲染（incremental rendering）——即将渲染工作分割成小的单元并在需要时暂停、中断或复用这些单元。</p>
-<p>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。<br>react fiber没法让比较的时间缩短，但它使得diff的过程被分成一小段一小段的，因为它有了“保存工作进度”的能力。js会比较一部分虚拟dom，然后让渡主线程，给浏览器去做其他工作，然后继续比较，依次往复，等到最后比较完成，一次性更新到视图上。<br>在新的架构中，每个节点有三个指针：分别指向第一个子节点、下一个兄弟节点、父节点。这种<strong>数据结构</strong>就是fiber，它的遍历规则如下：<br><img src="https://img2.imgtp.com/2024/04/14/eVCxWVR9.png" alt="Fiber"><br>从根节点开始，依次遍历该节点的子节点、兄弟节点，如果两者都遍历了，则回到它的父节点；<br>当一个节点的所有子节点遍历完成，才认为该节点遍历完成；<br>根据这个规则，同样在图中标出了节点遍历完成的顺序。跟树结构对比会发现，虽然数据结构不同，但是节点的遍历开始和完成顺序一模一样。不同的是，当遍历发生中断时，只要保留下当前节点的索引，断点是可以恢复的——因为每个节点都保持着对其父节点的索引。</p>
-<p>这种数据结构之所以被叫做fiber，因为fiber的翻译是纤程，它被认为是<strong>协程</strong>的一种实现形式。协程是比线程更小的调度单位：它的开启、暂停可以被程序员所控制。具体来说，react fiber是通过requestIdleCallback这个api去控制的组件渲染的“进度条”。<br>requesetIdleCallback是一个属于宏任务的回调，就像setTimeout一样。不同的是，setTimeout的执行时机由我们传入的回调时间去控制，requesetIdleCallback是受屏幕的刷新率去控制。本文不对这部分做深入探讨，只需要知道它每隔16ms会被调用一次，它的回调函数可以获取本次可以执行的时间，每一个16ms除了requesetIdleCallback的回调之外，还有其他工作，所以能使用的时间是不确定的，但只要时间到了，就会停下节点的遍历。<br>react因为先天的不足——无法精确更新，所以需要react fiber把组件渲染工作切片；而vue基于数据劫持，更新粒度很小，没有这个压力；<br>react fiber这种数据结构使得节点可以回溯到其父节点，只要保留下中断的节点索引，就可以恢复之前的工作进度；</p>
-<p>React Fiber 是针对就协调器重写的完全向后兼容的一个版本。React 的这种新的协调算法被称为 Fiber Reconciler。这个名字来自于 fiber，它经常被用来表示 DOM 树的节点。<br>Fiber 协调器的主要目标是增量渲染，更好更平滑地渲染 UI 动画和手势，以及用户互动的响应性。协调器还允许你将工作分为多个块，并将渲染工作分为多个帧。它还增加了为每个工作单元定义优先级的能力，以及暂停、重复使用和中止工作的能力。<br>React 的其他一些特性包括从一个渲染函数返回多个元素，支持更好的错误处理（我们可以使用 componentDidCatch 方法来获得更清晰的错误信息），以及 portals。<br>在计算新的渲染更新时，React 会多次回访主线程。因此，高优先级的工作可以跳过低优先级的工作。React 在内部为每个更新定义了优先级。</p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7077545184807878692searchId=202404141235390F9BCB93882E3BFD6922">https://juejin.cn/post/7077545184807878692searchId=202404141235390F9BCB93882E3BFD6922</a></p>
+<p>真实的 DOM 首先会映射为虚拟 DOM； 当虚拟 DOM
+发生变化后，就会根据差距计算生成 patch，这个 patch
+是一个结构化的数据，内容包含了增加、更新、移除等； 根据 patch
+去更新真实的 DOM，反馈到用户的界面上。</p>
+<figure>
+<img src="https://img2.imgtp.com/2024/04/14/VUceGZRO.png" alt="diff" />
+<figcaption aria-hidden="true">diff</figcaption>
+</figure>
+<h2 id="fiber是什么">fiber是什么</h2>
+<p>React Fiber 是 React 16
+中引入的新的协调引擎或重写的核心算法。目的是增强 React
+应用程序的性能和响应性，特别是在动画、布局和手势等交互密集型任务中。Fiber
+的核心设计理念是增量渲染（incremental
+rendering）——即将渲染工作分割成小的单元并在需要时暂停、中断或复用这些单元。</p>
+<p>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+react
+fiber没法让比较的时间缩短，但它使得diff的过程被分成一小段一小段的，因为它有了“保存工作进度”的能力。js会比较一部分虚拟dom，然后让渡主线程，给浏览器去做其他工作，然后继续比较，依次往复，等到最后比较完成，一次性更新到视图上。
+在新的架构中，每个节点有三个指针：分别指向第一个子节点、下一个兄弟节点、父节点。这种<strong>数据结构</strong>就是fiber，它的遍历规则如下：
+<img src="https://img2.imgtp.com/2024/04/14/eVCxWVR9.png" alt="Fiber" />
+从根节点开始，依次遍历该节点的子节点、兄弟节点，如果两者都遍历了，则回到它的父节点；
+当一个节点的所有子节点遍历完成，才认为该节点遍历完成；
+根据这个规则，同样在图中标出了节点遍历完成的顺序。跟树结构对比会发现，虽然数据结构不同，但是节点的遍历开始和完成顺序一模一样。不同的是，当遍历发生中断时，只要保留下当前节点的索引，断点是可以恢复的——因为每个节点都保持着对其父节点的索引。</p>
+<p>这种数据结构之所以被叫做fiber，因为fiber的翻译是纤程，它被认为是<strong>协程</strong>的一种实现形式。协程是比线程更小的调度单位：它的开启、暂停可以被程序员所控制。具体来说，react
+fiber是通过requestIdleCallback这个api去控制的组件渲染的“进度条”。
+requesetIdleCallback是一个属于宏任务的回调，就像setTimeout一样。不同的是，setTimeout的执行时机由我们传入的回调时间去控制，requesetIdleCallback是受屏幕的刷新率去控制。本文不对这部分做深入探讨，只需要知道它每隔16ms会被调用一次，它的回调函数可以获取本次可以执行的时间，每一个16ms除了requesetIdleCallback的回调之外，还有其他工作，所以能使用的时间是不确定的，但只要时间到了，就会停下节点的遍历。
+react因为先天的不足——无法精确更新，所以需要react
+fiber把组件渲染工作切片；而vue基于数据劫持，更新粒度很小，没有这个压力；
+react
+fiber这种数据结构使得节点可以回溯到其父节点，只要保留下中断的节点索引，就可以恢复之前的工作进度；</p>
+<p>React Fiber 是针对就协调器重写的完全向后兼容的一个版本。React
+的这种新的协调算法被称为 Fiber Reconciler。这个名字来自于
+fiber，它经常被用来表示 DOM 树的节点。 Fiber
+协调器的主要目标是增量渲染，更好更平滑地渲染 UI
+动画和手势，以及用户互动的响应性。协调器还允许你将工作分为多个块，并将渲染工作分为多个帧。它还增加了为每个工作单元定义优先级的能力，以及暂停、重复使用和中止工作的能力。
+React
+的其他一些特性包括从一个渲染函数返回多个元素，支持更好的错误处理（我们可以使用
+componentDidCatch 方法来获得更清晰的错误信息），以及 portals。
+在计算新的渲染更新时，React
+会多次回访主线程。因此，高优先级的工作可以跳过低优先级的工作。React
+在内部为每个更新定义了优先级。</p>
+<h2
+id="任务优先级如何处理的底层模型是什么">任务优先级如何处理的？底层模型是什么</h2>
+<p>React Fiber
+的任务优先级处理是通过一个调度器（Scheduler）来实现的，这个调度器负责协调不同优先级的任务。在
+React 中，每个更新都有一个与之关联的优先级。React Scheduler
+使用这些优先级来决定何时执行哪些更新。 优先级级别 React
+定义了多个优先级级别，包括（但不限于）：</p>
+<p>Immediate
+Priority：用于不能等待的工作，比如由用户输入或动画触发的更新。 User
+Blocking Priority：用于可能阻塞用户操作的工作。 Normal
+Priority：用于正常的数据抓取、DOM 更新等。 Low
+Priority：用于不急迫的任务，可以推迟的工作，如日志记录。 Idle
+Priority：用于完全不紧急的任务，只有在主线程空闲时才执行，如离屏渲染。</p>
+<p>调度模型 React Scheduler 的模型基于以下概念：</p>
+<p>requestIdleCallback：这是浏览器 API
+的一部分，允许开发者安排在主线程空闲时运行的低优先级工作。React
+Scheduler
+使用了类似requestIdleCallback的机制，用于在浏览器空闲时执行低优先级工作。</p>
+<p>requestAnimationFrame：这是另一种浏览器
+API，常用于在下次重绘前执行动画或视觉更新。React Scheduler
+利用它来确保高优先级的更新能够及时执行。</p>
+<p>当 React 需要调度一个更新时，它会根据更新的优先级将其排队。Scheduler
+将会决定基于优先级和浏览器的当前忙碌程度来执行哪些任务。高优先级的任务（如用户输入响应）会被提前执行，而低优先级的任务可能会延迟，直到浏览器有足够的空闲时间来处理这些任务。
+中断和恢复 React Fiber
+架构允许中断正在进行的工作，以及根据需要恢复这些工作。如果有一个新的高优先级更新发生（如用户点击），React
+可以中断正在进行的低优先级渲染任务，优先执行高优先级更新，以确保良好的用户交互体验。
+为了管理这些不同的工作单元（Fibers），React
+维护了一个工作队列，其中包含了所有已调度且待处理的工作。Scheduler
+会根据优先级来处理这个队列中的任务，使用循环来不断检查是否有更高优先级的任务需要插队执行。</p>
+<h2
+id="这种模型下如何实现任务中断的用了什么技术">这种模型下，如何实现任务中断的？用了什么技术？</h2>
+<p>React Fiber 的任务中断是通过 Fiber 架构的工作循环来实现的。Fiber
+架构改变了 React
+以前的同步渲染模式，引入了一种可以暂停和恢复的异步渲染方式。以下是实现任务中断的关键技术和概念：
+分包（Chunking） Fiber 架构把渲染工作拆分成了多个小块（chunks）。每个
+Fiber 节点代表了一个工作单元。React 渲染时，会按顺序遍历 Fiber
+树中的节点，执行与每个节点相关的工作。 任务循环与调度 React
+有一个内部调度系统（React
+Scheduler），负责管理任务的优先级和执行。在任务循环中，React
+会根据优先级检查当前是否有更重要的任务需要处理，随时准备暂停当前的工作。
+时间分片（Time Slicing） React
+使用浏览器的requestIdleCallback和requestAnimationFrameAPI
+来执行时间分片。使用requestIdleCallback可以让 React
+在浏览器空闲时执行低优先级的更新，而requestAnimationFrame则用于高优先级的更新，如动画。
+任务中断 在 React
+的工作循环中，开发者可以设置一个时间阈值，告诉调度器当前的时间片段是否还有剩余时间。如果当前时间片段已经没有剩余时间，React
+可以将控制权交还给浏览器，使浏览器处理如输入、滚动等其他任务。这样的过程称为任务中断。当浏览器处理完其他任务并再次有空闲时，React
+可以恢复之前中断的工作。 恢复与状态一致性 由于 React
+每次处理的都是一个单独的 Fiber 节点，当工作被中断时，React 标记这个
+Fiber 节点的状态，并将其保留在内存中。当恢复工作时，React
+可以从上次中断的地方继续执行，确保组件状态的一致性。 实现细节 React
+并没有直接使用requestIdleCallback，因为这个 API
+的兼容性和稳定性问题。相反，React
+实现了自己的任务调度策略，模拟了类似的机制，以控制何时执行、中断以及恢复任务。React
+的并发模式（Concurrent Mode）依赖于这种任务调度策略，它使得 React
+可以在渲染过程中中断，并根据优先级进行任务管理。 总结
+通过上述的技术和架构，React 的 Fiber 架构能够在保持 UI
+响应的同时，进行复杂的渲染任务。这使得 React
+应用即使在繁重的计算和大量的组件更新时，也能保持良好的性能表现。任务中断是实现这一目标的关键技术之一。</p>
+<h2 id="参考">参考</h2>
+<p><a
+target="_blank" rel="noopener" href="https://juejin.cn/post/7077545184807878692searchId=202404141235390F9BCB93882E3BFD6922"
+class="uri">https://juejin.cn/post/7077545184807878692searchId=202404141235390F9BCB93882E3BFD6922</a></p>
 
   </div>
 </article>
@@ -223,7 +336,7 @@
     
     
       <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E8%99%9A%E6%8B%9FDOM"><span class="toc-number">1.</span> <span class="toc-text">什么是虚拟DOM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8%E8%99%9A%E6%8B%9FDOM%EF%BC%9F"><span class="toc-number">2.</span> <span class="toc-text">为什么要使用虚拟DOM？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#React-diff%E7%AE%97%E6%B3%95%E7%9A%84%E5%8E%9F%E7%90%86"><span class="toc-number">3.</span> <span class="toc-text">React diff算法的原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#fiber%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">4.</span> <span class="toc-text">fiber是什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">5.</span> <span class="toc-text">参考</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E8%99%9A%E6%8B%9Fdom"><span class="toc-number">1.</span> <span class="toc-text">什么是虚拟DOM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8%E8%99%9A%E6%8B%9Fdom"><span class="toc-number">2.</span> <span class="toc-text">为什么要使用虚拟DOM？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#react-diff%E7%AE%97%E6%B3%95%E7%9A%84%E5%8E%9F%E7%90%86"><span class="toc-number">3.</span> <span class="toc-text">React diff算法的原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#fiber%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">4.</span> <span class="toc-text">fiber是什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%BB%E5%8A%A1%E4%BC%98%E5%85%88%E7%BA%A7%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86%E7%9A%84%E5%BA%95%E5%B1%82%E6%A8%A1%E5%9E%8B%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">5.</span> <span class="toc-text">任务优先级如何处理的？底层模型是什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%99%E7%A7%8D%E6%A8%A1%E5%9E%8B%E4%B8%8B%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E4%BB%BB%E5%8A%A1%E4%B8%AD%E6%96%AD%E7%9A%84%E7%94%A8%E4%BA%86%E4%BB%80%E4%B9%88%E6%8A%80%E6%9C%AF"><span class="toc-number">6.</span> <span class="toc-text">这种模型下，如何实现任务中断的？用了什么技术？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">7.</span> <span class="toc-text">参考</span></a></li></ol>
       </div>
     
 

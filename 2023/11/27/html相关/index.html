@@ -6,12 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="行内元素有哪些？块级元素有哪些？ 空(void)元素有那些？行内元素有：a b span img input select strong；块级元素有：div ul ol li dl dt dd h1 h2 h3 h4 h5 h6 p；空元素，即没有内容的HTML元素。空元素是在开始标签中关闭的，也就是空元素没有闭合标签：  123常见的有：&lt;br&gt;、&lt;hr&gt;、&lt;im">
+    <meta name="description" content="行内元素有哪些？块级元素有哪些？ 空(void)元素有那些？ 行内元素有：a b span img input select strong； 块级元素有：div ul ol li dl dt dd h1 h2 h3 h4 h5 h6 p； 空元素，即没有内容的HTML元素。空元素是在开始标签中关闭的，也就是空元素没有闭合标签：  123常见的有：&lt;br&gt;、&lt;hr&amp;g">
 <meta property="og:type" content="article">
 <meta property="og:title" content="html相关记录">
 <meta property="og:url" content="https://sjtu-weimang.github.io/blog/2023/11/27/html%E7%9B%B8%E5%85%B3/index.html">
 <meta property="og:site_name" content="weimang&#39;s blog">
-<meta property="og:description" content="行内元素有哪些？块级元素有哪些？ 空(void)元素有那些？行内元素有：a b span img input select strong；块级元素有：div ul ol li dl dt dd h1 h2 h3 h4 h5 h6 p；空元素，即没有内容的HTML元素。空元素是在开始标签中关闭的，也就是空元素没有闭合标签：  123常见的有：&lt;br&gt;、&lt;hr&gt;、&lt;im">
+<meta property="og:description" content="行内元素有哪些？块级元素有哪些？ 空(void)元素有那些？ 行内元素有：a b span img input select strong； 块级元素有：div ul ol li dl dt dd h1 h2 h3 h4 h5 h6 p； 空元素，即没有内容的HTML元素。空元素是在开始标签中关闭的，也就是空元素没有闭合标签：  123常见的有：&lt;br&gt;、&lt;hr&amp;g">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-11-27T06:52:00.000Z">
 <meta property="article:modified_time" content="2024-04-12T13:00:10.738Z">
@@ -172,35 +172,104 @@
 
   <div class="content e-content" itemprop="articleBody">
     <blockquote>
-<p>行内元素有哪些？块级元素有哪些？ 空(void)元素有那些？<br>行内元素有：a b span img input select strong；<br>块级元素有：div ul ol li dl dt dd h1 h2 h3 h4 h5 h6 p；<br>空元素，即没有内容的HTML元素。空元素是在开始标签中关闭的，也就是空元素没有闭合标签：</p>
+<p>行内元素有哪些？块级元素有哪些？ 空(void)元素有那些？ 行内元素有：a b
+span img input select strong； 块级元素有：div ul ol li dl dt dd h1 h2
+h3 h4 h5 h6 p；
+空元素，即没有内容的HTML元素。空元素是在开始标签中关闭的，也就是空元素没有闭合标签：</p>
 </blockquote>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">常见的有：<span class="tag">&lt;<span class="name">br</span>&gt;</span>、<span class="tag">&lt;<span class="name">hr</span>&gt;</span>、<span class="tag">&lt;<span class="name">img</span>&gt;</span>、<span class="tag">&lt;<span class="name">input</span>&gt;</span>、<span class="tag">&lt;<span class="name">link</span>&gt;</span>、<span class="tag">&lt;<span class="name">meta</span>&gt;</span>；</span><br><span class="line">鲜见的有：<span class="tag">&lt;<span class="name">area</span>&gt;</span>、<span class="tag">&lt;<span class="name">base</span>&gt;</span>、<span class="tag">&lt;<span class="name">col</span>&gt;</span>、<span class="tag">&lt;<span class="name">colgroup</span>&gt;</span>、<span class="tag">&lt;<span class="name">command</span>&gt;</span>、<span class="tag">&lt;<span class="name">embed</span>&gt;</span>、</span><br><span class="line"><span class="tag">&lt;<span class="name">keygen</span>&gt;</span>、<span class="tag">&lt;<span class="name">param</span>&gt;</span>、<span class="tag">&lt;<span class="name">source</span>&gt;</span>、<span class="tag">&lt;<span class="name">track</span>&gt;</span>、<span class="tag">&lt;<span class="name">wbr</span>&gt;</span>。</span><br></pre></td></tr></table></figure>
-
-<p>在 HTML 页面中，如果在执行脚本时，页面的状态是不可相应的，直到脚本执行完成后，页面才变成可相应。web worker 是运行在后台的 js，独立于其他脚本，不会影响页面的性能。 并且通过 postMessage 将结果回传到主线程。这样在进行复杂操作的时候，就不会阻塞主线程了。<br>如何创建 web worker：</p>
-<p>检测浏览器对于 web worker 的支持性<br>创建 web worker 文件（js，回传函数等）<br>创建 web worker 对象<br>10. HTML5的离线储存怎么使用，它的工作原理是什么<br>离线存储指的是：在用户没有与因特网连接时，可以正常访问站点或应用，在用户与因特网连接时，更新用户机器上的缓存文件。<br><strong>原理：</strong>HTML5的离线存储是基于一个新建的 .appcache 文件的缓存机制(不是存储技术)，通过这个文件上的解析清单离线存储资源，这些资源就会像cookie一样被存储了下来。之后当网络在处于离线状态下时，浏览器会通过被离线存储的数据进行页面展示<br>使用方法：<br>（1）创建一个和 html 同名的 manifest 文件，然后在页面头部加入 manifest 属性：<br>html复制代码<html lang="en" manifest="index.manifest"></p>
-<p>（2）在 cache.manifest 文件中编写需要离线存储的资源：<br>html复制代码CACHE MANIFEST<br>    #v0.11<br>    CACHE:<br>    js&#x2F;app.js<br>    css&#x2F;style.css<br>    NETWORK:<br>    resourse&#x2F;logo.png<br>    FALLBACK:<br>    &#x2F; &#x2F;offline.html</p>
-<p>CACHE: 表示需要离线存储的资源列表，由于包含 manifest 文件的页面将被自动离线存储，所以不需要把页面自身也列出来。<br>NETWORK: 表示在它下面列出来的资源只有在在线的情况下才能访问，他们不会被离线存储，所以在离线情况下无法使用这些资源。不过，如果在 CACHE 和 NETWORK 中有一个相同的资源，那么这个资源还是会被离线存储，也就是说 CACHE 的优先级更高。<br>FALLBACK: 表示如果访问第一个资源失败，那么就使用第二个资源来替换他，比如上面这个文件表示的就是如果访问根目录下任何一个资源失败了，那么就去访问 offline.html 。</p>
-<p>（3）在离线状态时，操作 window.applicationCache 进行离线缓存的操作。<br>如何更新缓存：<br>（1）更新 manifest 文件<br>（2）通过 javascript 操作<br>（3）清除浏览器缓存<br>注意事项：<br>（1）浏览器对缓存数据的容量限制可能不太一样（某些浏览器设置的限制是每个站点 5MB）。<br>（2）如果 manifest 文件，或者内部列举的某一个文件不能正常下载，整个更新过程都将失败，浏览器继续全部使用老的缓存。<br>（3）引用 manifest 的 html 必须与 manifest 文件同源，在同一个域下。<br>（4）FALLBACK 中的资源必须和 manifest 文件同源。<br>（5）当一个资源被缓存后，该浏览器直接请求这个绝对路径也会访问缓存中的资源。<br>（6）站点中的其他页面即使没有设置 manifest 属性，请求的资源如果在缓存中也从缓存中访问。<br>（7）当 manifest 文件发生改变时，资源请求本身也会触发更新。<br> label 的作用是什么？如何使用？<br>label标签来定义表单控件的关系：当用户选择label标签时，浏览器会自动将焦点转到和label标签相关的表单控件上。</p>
+<p>在 HTML
+页面中，如果在执行脚本时，页面的状态是不可相应的，直到脚本执行完成后，页面才变成可相应。web
+worker 是运行在后台的 js，独立于其他脚本，不会影响页面的性能。 并且通过
+postMessage
+将结果回传到主线程。这样在进行复杂操作的时候，就不会阻塞主线程了。
+如何创建 web worker：</p>
+检测浏览器对于 web worker 的支持性 创建 web worker
+文件（js，回传函数等） 创建 web worker 对象 10.
+HTML5的离线储存怎么使用，它的工作原理是什么
+离线存储指的是：在用户没有与因特网连接时，可以正常访问站点或应用，在用户与因特网连接时，更新用户机器上的缓存文件。
+<strong>原理：</strong>HTML5的离线存储是基于一个新建的 .appcache
+文件的缓存机制(不是存储技术)，通过这个文件上的解析清单离线存储资源，这些资源就会像cookie一样被存储了下来。之后当网络在处于离线状态下时，浏览器会通过被离线存储的数据进行页面展示
+使用方法： （1）创建一个和 html 同名的 manifest 文件，然后在页面头部加入
+manifest 属性： html复制代码
+<html lang="en" manifest="index.manifest">
+<p>（2）在 cache.manifest 文件中编写需要离线存储的资源：
+html复制代码CACHE MANIFEST #v0.11 CACHE: js/app.js css/style.css
+NETWORK: resourse/logo.png FALLBACK: / /offline.html</p>
+<p>CACHE: 表示需要离线存储的资源列表，由于包含 manifest
+文件的页面将被自动离线存储，所以不需要把页面自身也列出来。 NETWORK:
+表示在它下面列出来的资源只有在在线的情况下才能访问，他们不会被离线存储，所以在离线情况下无法使用这些资源。不过，如果在
+CACHE 和 NETWORK
+中有一个相同的资源，那么这个资源还是会被离线存储，也就是说 CACHE
+的优先级更高。 FALLBACK:
+表示如果访问第一个资源失败，那么就使用第二个资源来替换他，比如上面这个文件表示的就是如果访问根目录下任何一个资源失败了，那么就去访问
+offline.html 。</p>
+<p>（3）在离线状态时，操作 window.applicationCache 进行离线缓存的操作。
+如何更新缓存： （1）更新 manifest 文件 （2）通过 javascript 操作
+（3）清除浏览器缓存 注意事项：
+（1）浏览器对缓存数据的容量限制可能不太一样（某些浏览器设置的限制是每个站点
+5MB）。 （2）如果 manifest
+文件，或者内部列举的某一个文件不能正常下载，整个更新过程都将失败，浏览器继续全部使用老的缓存。
+（3）引用 manifest 的 html 必须与 manifest 文件同源，在同一个域下。
+（4）FALLBACK 中的资源必须和 manifest 文件同源。
+（5）当一个资源被缓存后，该浏览器直接请求这个绝对路径也会访问缓存中的资源。
+（6）站点中的其他页面即使没有设置 manifest
+属性，请求的资源如果在缓存中也从缓存中访问。 （7）当 manifest
+文件发生改变时，资源请求本身也会触发更新。 label
+的作用是什么？如何使用？
+label标签来定义表单控件的关系：当用户选择label标签时，浏览器会自动将焦点转到和label标签相关的表单控件上。</p>
 <p>使用方法1：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;mobile&quot;</span>&gt;</span>Number:<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">id</span>=<span class="string">&quot;mobile&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
-
 <p>使用方法2：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">label</span>&gt;</span>Date:<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span>/&gt;</span><span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<ol start="16">
-<li>head 标签有什么作用，其中什么标签必不可少？<br> 标签用于定义文档的头部，它是所有头部元素的容器。 中的元素可以引用脚本、指示浏览器在哪里找到样式表、提供元信息等。<br>文档的头部描述了文档的各种属性和信息，包括文档的标题、在 Web 中的位置以及和其他文档的关系等。绝大多数文档头部包含的数据都不会真正作为内容显示给读者。<br>下面这些标签可用在 head 部分：<base>, <link>, <meta>, <script>, <style>, <title>。<br>其中 <title> 定义文档的标题，它是 head 部分中唯一必需的元素。</li>
-<li>文档声明（Doctype）和<!Doctype html>有何作用? 严格模式与混杂模式如何区分？它们有何意义?<br>文档声明的作用： 文档声明是为了告诉浏览器，当前HTML文档使用什么版本的HTML来写的，这样浏览器才能按照声明的版本来正确的解析。<br>的作用：<!doctype html> 的作用就是让浏览器进入标准模式，使用最新的 HTML5 标准来解析渲染页面；如果不写，浏览器就会进入混杂模式，我们需要避免此类情况发生。<br>严格模式与混杂模式的区分：</li>
+<ol start="16" type="1">
+<li>head 标签有什么作用，其中什么标签必不可少？
+标签用于定义文档的头部，它是所有头部元素的容器。
+中的元素可以引用脚本、指示浏览器在哪里找到样式表、提供元信息等。
+文档的头部描述了文档的各种属性和信息，包括文档的标题、在 Web
+中的位置以及和其他文档的关系等。绝大多数文档头部包含的数据都不会真正作为内容显示给读者。
+下面这些标签可用在 head 部分：<base>, <link>,
+<meta>
+,
+<script>
+,
+<style>
+,
+<title>
+。 其中
+<title>
+定义文档的标题，它是 head 部分中唯一必需的元素。</li>
+<li>文档声明（Doctype）和&lt;!Doctype html&gt;有何作用?
+严格模式与混杂模式如何区分？它们有何意义? 文档声明的作用：
+文档声明是为了告诉浏览器，当前HTML文档使用什么版本的HTML来写的，这样浏览器才能按照声明的版本来正确的解析。
+的作用：&lt;!doctype html&gt; 的作用就是让浏览器进入标准模式，使用最新的
+HTML5
+标准来解析渲染页面；如果不写，浏览器就会进入混杂模式，我们需要避免此类情况发生。
+严格模式与混杂模式的区分：</li>
 </ol>
-<p>严格模式： 又称为标准模式，指浏览器按照W3C标准解析代码；<br>混杂模式： 又称怪异模式、兼容模式，是指浏览器用自己的方式解析代码。混杂模式通常模拟老式浏览器的行为，以防止老站点无法工作；</p>
+<p>严格模式： 又称为标准模式，指浏览器按照W3C标准解析代码； 混杂模式：
+又称怪异模式、兼容模式，是指浏览器用自己的方式解析代码。混杂模式通常模拟老式浏览器的行为，以防止老站点无法工作；</p>
 <p>区分：网页中的DTD，直接影响到使用的是严格模式还是浏览模式，可以说DTD的使用与这两种方式的区别息息相关。</p>
-<p>如果文档包含严格的DOCTYPE ，那么它一般以严格模式呈现（严格 DTD ——严格模式）；<br>包含过渡 DTD 和 URI 的 DOCTYPE ，也以严格模式呈现，但有过渡 DTD 而没有 URI （统一资源标识符，就是声明最后的地址）会导致页面以混杂模式呈现（有 URI 的过渡 DTD ——严格模式；没有 URI 的过渡 DTD ——混杂模式）；<br>DOCTYPE 不存在或形式不正确会导致文档以混杂模式呈现（DTD不存在或者格式不正确——混杂模式）；<br>HTML5 没有 DTD ，因此也就没有严格模式与混杂模式的区别，HTML5 有相对宽松的 法，实现时，已经尽可能大的实现了向后兼容(HTML5 没有严格和混杂之分)。</p>
+<p>如果文档包含严格的DOCTYPE ，那么它一般以严格模式呈现（严格 DTD
+——严格模式）； 包含过渡 DTD 和 URI 的 DOCTYPE
+，也以严格模式呈现，但有过渡 DTD 而没有 URI
+（统一资源标识符，就是声明最后的地址）会导致页面以混杂模式呈现（有 URI
+的过渡 DTD ——严格模式；没有 URI 的过渡 DTD ——混杂模式）； DOCTYPE
+不存在或形式不正确会导致文档以混杂模式呈现（DTD不存在或者格式不正确——混杂模式）；
+HTML5 没有 DTD ，因此也就没有严格模式与混杂模式的区别，HTML5
+有相对宽松的 法，实现时，已经尽可能大的实现了向后兼容(HTML5
+没有严格和混杂之分)。</p>
 <p>总之，严格模式让各个浏览器统一执行一套规范兼容模式保证了旧网站的正常运行。</p>
-<ol start="18">
-<li>浏览器乱码的原因是什么？如何解决？<br>产生乱码的原因：</li>
+<ol start="18" type="1">
+<li>浏览器乱码的原因是什么？如何解决？ 产生乱码的原因：</li>
 </ol>
-<p>网页源代码是gbk的编码，而内容中的中文字是utf-8编码的，这样浏览器打开即会出现html乱码，反之也会出现乱码；<br>html网页编码是gbk，而程序从数据库中调出呈现是utf-8编码的内容也会造成编码乱码；<br>浏览器不能自动检测网页编码，造成网页乱码。</p>
+<p>网页源代码是gbk的编码，而内容中的中文字是utf-8编码的，这样浏览器打开即会出现html乱码，反之也会出现乱码；
+html网页编码是gbk，而程序从数据库中调出呈现是utf-8编码的内容也会造成编码乱码；
+浏览器不能自动检测网页编码，造成网页乱码。</p>
 <p>解决办法：</p>
-<p>使用软件编辑HTML网页内容；<br>如果网页设置编码是gbk，而数据库储存数据编码格式是UTF-8，此时需要程序查询数据库数据显示数据前进程序转码；<br>如果浏览器浏览时候出现网页乱码，在浏览器中找到转换编码的菜单进行转换。</p>
+<p>使用软件编辑HTML网页内容；
+如果网页设置编码是gbk，而数据库储存数据编码格式是UTF-8，此时需要程序查询数据库数据显示数据前进程序转码；
+如果浏览器浏览时候出现网页乱码，在浏览器中找到转换编码的菜单进行转换。</p>
 
   </div>
 </article>

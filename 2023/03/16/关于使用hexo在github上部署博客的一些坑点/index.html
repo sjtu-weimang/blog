@@ -177,27 +177,32 @@
 
   <div class="content e-content" itemprop="articleBody">
     <p>使用hexo部署个人博客教程</p>
-<h1 id="部署流程简介"><a href="#部署流程简介" class="headerlink" title="部署流程简介"></a>部署流程简介</h1><h2 id="建立本地仓库"><a href="#建立本地仓库" class="headerlink" title="建立本地仓库"></a>建立本地仓库</h2><p>1.hexo依赖于node.js环境运行，在安装node.js后，使用npm安装hexo<br>2.使用hexo init 初始化一个本地仓库<br>3.使用hexo g 生成静态文件<br>4.使用hexo s 启动本地服务器，可以预览效果</p>
-<pre><code><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-cli -g     <span class="comment">#在全局安装hexo</span></span><br><span class="line">hexo init blog              <span class="comment">#初始化</span></span><br><span class="line"><span class="built_in">cd</span> blog                     <span class="comment">#进入文件目录</span></span><br><span class="line">npm install                 <span class="comment">#安装依赖</span></span><br><span class="line">hexo server                 <span class="comment">#在本地服务器运行</span></span><br></pre></td></tr></table></figure>
-</code></pre>
+<h1 id="部署流程简介">部署流程简介</h1>
+<h2 id="建立本地仓库">建立本地仓库</h2>
+<p>1.hexo依赖于node.js环境运行，在安装node.js后，使用npm安装hexo
+2.使用hexo init 初始化一个本地仓库 3.使用hexo g 生成静态文件 4.使用hexo
+s 启动本地服务器，可以预览效果</p>
+<pre><code><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-cli -g     <span class="comment">#在全局安装hexo</span></span><br><span class="line">hexo init blog              <span class="comment">#初始化</span></span><br><span class="line"><span class="built_in">cd</span> blog                     <span class="comment">#进入文件目录</span></span><br><span class="line">npm install                 <span class="comment">#安装依赖</span></span><br><span class="line">hexo server                 <span class="comment">#在本地服务器运行</span></span><br></pre></td></tr></table></figure></code></pre>
 <p>这时候个人博客已经可以在本地服务器的4000端口访问了。</p>
 <!-- ![picture](./img/test.jpg "localblog") -->
-
-<h2 id="准备github仓库"><a href="#准备github仓库" class="headerlink" title="准备github仓库"></a>准备github仓库</h2><p>1.在github上新创建一个仓库，仓库名必须为username.github.io(若仓库名与GitHub账户名不同，则url为username.github.io&#x2F;repoisitoryname)。<br>2.在新仓库的Settings-&gt;Pages-&gt;Build and deployment选项中选择博客网页的源分支，一般为main&#x2F;(root)。<br>3.配置好GitHub的<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42310154/article/details/118340458">SSH</a> ,否则在push时会遇到权限问题。<br>4.将本地仓库与远程仓库建立链接：</p>
-<!-- [SSH](https://blog.csdn.net/weixin_42310154/article/details/118340458) -->
-
-<pre><code><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#在本地仓库目录下</span></span><br><span class="line">git init                <span class="comment">#初始化本地仓库</span></span><br><span class="line">git remote add origin git@github.com:yourName/repositoryname.git </span><br><span class="line"><span class="comment">#origin是远程仓库的别名</span></span><br></pre></td></tr></table></figure>
-</code></pre>
-<h2 id="部署到github"><a href="#部署到github" class="headerlink" title="部署到github"></a>部署到github</h2><p><strong>部署到个人网站与一般仓库不同，不能使用”add-commit-pull-push”的推送流程，要借助部署工具</strong></p>
-<pre><code><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save        <span class="comment">#安装部署工具</span></span><br></pre></td></tr></table></figure>
-</code></pre>
+<h2 id="准备github仓库">准备github仓库</h2>
+<p>1.在github上新创建一个仓库，仓库名必须为username.github.io(若仓库名与GitHub账户名不同，则url为username.github.io/repoisitoryname)。
+2.在新仓库的Settings-&gt;Pages-&gt;Build and
+deployment选项中选择博客网页的源分支，一般为main/(root)。
+3.配置好GitHub的<a
+target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42310154/article/details/118340458">SSH</a>
+,否则在push时会遇到权限问题。 4.将本地仓库与远程仓库建立链接：
+<!-- [SSH](https://blog.csdn.net/weixin_42310154/article/details/118340458) --></p>
+<pre><code><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#在本地仓库目录下</span></span><br><span class="line">git init                <span class="comment">#初始化本地仓库</span></span><br><span class="line">git remote add origin git@github.com:yourName/repositoryname.git </span><br><span class="line"><span class="comment">#origin是远程仓库的别名</span></span><br></pre></td></tr></table></figure></code></pre>
+<h2 id="部署到github">部署到github</h2>
+<p><strong>部署到个人网站与一般仓库不同，不能使用"add-commit-pull-push"的推送流程，要借助部署工具</strong></p>
+<pre><code><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save        <span class="comment">#安装部署工具</span></span><br></pre></td></tr></table></figure></code></pre>
 <p>修改根目录下_config.yml配置文档(在键和值之间有一个空格，否则会提示缩进错误！)</p>
-<pre><code><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#在文档的末尾</span></span><br><span class="line">deploy:</span><br><span class="line">    <span class="built_in">type</span>: git                                   <span class="comment">#部署方式</span></span><br><span class="line">    repo: &lt;git@github.com&gt;:yourname/blog.git    <span class="comment">#仓库链接</span></span><br><span class="line">    branch: main                                <span class="comment">#对应的分支</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#在文档的14-22行</span></span><br><span class="line">url: https://yourname.github.io/blog/           <span class="comment">#博客的网址</span></span><br><span class="line">root: /blog                                     <span class="comment">#GitHub中仓库的路径</span></span><br></pre></td></tr></table></figure>
-</code></pre>
+<pre><code><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#在文档的末尾</span></span><br><span class="line">deploy:</span><br><span class="line">    <span class="built_in">type</span>: git                                   <span class="comment">#部署方式</span></span><br><span class="line">    repo: &lt;git@github.com&gt;:yourname/blog.git    <span class="comment">#仓库链接</span></span><br><span class="line">    branch: main                                <span class="comment">#对应的分支</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#在文档的14-22行</span></span><br><span class="line">url: https://yourname.github.io/blog/           <span class="comment">#博客的网址</span></span><br><span class="line">root: /blog                                     <span class="comment">#GitHub中仓库的路径</span></span><br></pre></td></tr></table></figure></code></pre>
 <p>修改后配置文档后，再次打开终端，输入以下命令进行远程部署。</p>
-<pre><code><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean                                  <span class="comment"># 清除缓存文件等</span></span><br><span class="line">hexo g                                      <span class="comment"># 生成页面</span></span><br><span class="line">hexo d                                      <span class="comment"># 部署到远程</span></span><br></pre></td></tr></table></figure>
-</code></pre>
-<p>以后每次新发布文章后，都按照此流程进行部署。<br>这时打开GitHub仓库-&gt;action,可以看到部署的进程，一般需要几分钟。</p>
+<pre><code><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean                                  <span class="comment"># 清除缓存文件等</span></span><br><span class="line">hexo g                                      <span class="comment"># 生成页面</span></span><br><span class="line">hexo d                                      <span class="comment"># 部署到远程</span></span><br></pre></td></tr></table></figure></code></pre>
+<p>以后每次新发布文章后，都按照此流程进行部署。
+这时打开GitHub仓库-&gt;action,可以看到部署的进程，一般需要几分钟。</p>
 
   </div>
 </article>
